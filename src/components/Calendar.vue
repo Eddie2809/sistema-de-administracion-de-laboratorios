@@ -1,5 +1,5 @@
 <script>
-    //FullCalendar
+   //FullCalendar
     import '@fullcalendar/core/vdom' // solves problem with Vite
     import FullCalendar from '@fullcalendar/vue3'
     import timeGridPlugin from '@fullcalendar/timegrid'

@@ -1,0 +1,20 @@
+{
+    "version": 3,
+    "mappings": "ACqBA,AAAA,CAAC,CAAC;EACE,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;EACT,WAAW,EALJ,SAAS,EAAE,UAAU;EAM5B,SAAS,EAtBN,IAAI;EAuBP,KAAK,EAlBG,OAAO;CAkBK",
+    "sources": [
+        "style.sass",
+        "_global.sass",
+        "components/_calendar.sass",
+        "components/_footbar.sass",
+        "components/_navbar.sass",
+        "containers/_home.sass",
+        "containers/_labs.sass",
+        "containers/_login.sass",
+        "containers/_make_request.sass",
+        "containers/_manage_requests.sass",
+        "containers/_my_requests.sass",
+        "containers/_admin_tools.sass"
+    ],
+    "names": [],
+    "file": "style.css"
+}
