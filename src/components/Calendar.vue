@@ -7,6 +7,9 @@
     import esLocale from '@fullcalendar/core/locales/es'
 
     export default{
+        props: {
+            events: Array
+        },
         components: {
             FullCalendar
         },
@@ -29,13 +32,7 @@
                     firstDay: 1,
                     height: 450,
                     displayEventTime: false,
-                    events: [
-                        {
-                            title: 'Matemáticas',
-                            start: '2022-04-15T13:00:00',
-                            end: '2022-04-15T14:30:00'
-                        }
-                    ]
+                    events: this.events
                 }
             }
         }
