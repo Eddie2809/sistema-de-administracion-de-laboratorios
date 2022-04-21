@@ -1,27 +1,35 @@
 <script>
-    import Calendar from '../components/Calendar.vue'
+    import Home from './Home.vue'
+    import Login from './Login.vue'
+    import LabsList from './LabsList.vue'
+    import ManageReservations from './ManageReservations.vue'
+    import Navbar from '../components/Navbar.vue'
+    import Footer from '../components/Footer.vue'
+    import MyReservations from './MyReservations.vue'
+    import ReservationRequest from './ReservationRequest.vue'
+    import AdminTools from './AdminTools.vue'
 
     const apiURL = 'https://salunicaribe-api.herokuapp.com/'
 
     export default{
         data(){
             return{
-                route: {
-                    login: true,
-                    home: false
-                },
-                userData: {},
-                loggedIn: false,
-                events: [{
-                    title: 'Fernando Gómez',
-                    start: '2022-04-19T12:00',
-                    end: '2022-04-19T14:00'
-                }]
-
+                route: 'home',
+                userData: {tipo: 'null'},
+                labsList: [],
+                usersList: []
             }
         },
         components: {
-            Calendar
+            MyReservations,
+            Login,
+            ReservationRequest,
+            Home,
+            LabsList,
+            ManageReservations,
+            Navbar,
+            Footer,
+            AdminTools
         },
         methods: {
             async fetchData(route,bodyObject){
@@ -39,7 +47,9 @@
                 }).then(res => res.json())
                 return resp
             },
-
+            changeRoute(newRoute){
+                this.route = newRoute
+            },
             createNewReservation(reason,labId,hours){
                 this.fetchData('new-reservation',{
                     reason: reason,
@@ -92,19 +102,80 @@
                     }
                 })
             },
-
+            modifyLab(labId,newName,disp){
+                fetchData('modify-lab',{
+                    id: labId,
+                    newName: newName,
+                    disp: disp
+                })
+                .then(res => alert('Hecho'))
+            },
+            assignLabManager(labId,newManagerId){
+                this.fetchData('assign-lab-manager',{
+                    labId: labId,
+                    userId: newManagerId
+                })
+                .then(res => alert('Hecho'))
+            },
+            deleteLab(labId){
+                this.fetchData('delete-lab',{labId: labId}).then(res => alert('Hecho'))
+            },
+            getLabs(){
+                this.fetchGet('get-labs').then(res => {
+                    this.labsList = res
+                })
+            },
+            getUsers(){
+                this.fetchGet('get-users').then(res => {
+                    this.usersList = res
+                })
+            },
+            deleteUser(userId){
+                this.fetchData('deleteUser',{userId: userId})
+                .then(res => alert('Hecho'))
+            },
+            modifyUser(userId,newName,newLastname,newEmail, newPassword,newUsername,newUsertype){
+                this.fetchData('modify-user',{
+                    userId: userId,
+                    newName: newName,
+                    newLastname: newLastname,
+                    newEmail: newEmail,
+                    newPassword: newPassword,
+                    newUsername: newUsername,
+                    newUsertype: newUsertype
+                })
+                .then(res => alert('Hecho'))
+            },
+            getReportData(data){
+                this.fetchGet('get-report-data').then(res => data = res)
+            },
+            changeLabStatus(labId,newStatus){
+                this.fetchData('switch-lab-status',{status: newStatus,labId: labId})
+                .then(() => alert('Hecho'))
+            },
+            cancelReservation(reservationId){
+                this.fetchData('cancel-reservation',{reservationId: reservationId})
+                .then(() => alert('Hecho'))
+            },
+            logOut(){
+                this.userData = {tipo: 'null'}
+                this.route = 'home'
+            }
         }
     }
 </script>
 
 <template>
     <div class="MainComponent">
-        <button @click="createNewReservation('hace falta pa',1,[{inicio: '2022-04-19T12:00',final:'2022-04-19T13:00'},{inicio: '2022-04-20T14:00',final: '2022-04-20T16:00'}])">Create reservation</button>
-        <button @click="addNewLab('Laboratorio de Mecánica',5)">Add lab</button>
-        <button @click="addNewUser('Jon','Doe','jd@gmail.com',3)">Add user</button>
-        <button @click="getEvents(2)">Get events</button>
-        <button @click="evaluateReservation(6,1,'')">Evaluate reservation</button>
-        <button @click="evaluateCredentials('eddvar','o8OR1e8HYo')">Log in</button>
+        <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
+        <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
+        <AdminTools v-if="this.route === 'admintools'"/>
+        <Home v-if="this.route === 'home'"/>
+        <LabsList v-if="this.route === 'labslist'"/>
+        <ManageReservations v-if="this.route === 'managereservations'"/>
+        <MyReservations v-if="this.route === 'myreservations'"/>
+        <ReservationRequest v-if="this.route === 'reservationrequest'"/>
+        <Footer v-if="this.route !== 'login'"/>
     </div>
 </template>
 
