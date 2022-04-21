@@ -2,8 +2,8 @@
     export default {
         data(){
             return {
-                username: "",
-                password: ""
+                username: "eddvar",
+                password: "o8OR1e8HYo"
             }
         },
         props: ['evaluateCredentials']

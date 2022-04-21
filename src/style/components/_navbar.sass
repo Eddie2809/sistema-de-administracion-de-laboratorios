@@ -5,7 +5,10 @@
     padding: 13px 70px 13px 70px
     align-items: center
     justify-content: space-between
-
+    position: fixed
+    width: 100%
+    z-index: 100
+    
     img
         height: 100%
 
@@ -15,6 +18,17 @@
 
     .selected
         color: $yellow
+
+    .loginButton
+        color: $yellow
+        background-color: rgba(0, 0, 0, 0)
+        border: 2px solid $yellow
+        padding: 10px
+        border-radius: 5px
+        text-decoration: underline
+        cursor: pointer
+        &:hover
+            animation: loginButtonHover 0.3s forwards 
 
     li
         color: white
@@ -26,3 +40,8 @@
 
         &:hover
             color: $yellow
+
+@keyframes loginButtonHover 
+    100%
+        background-color: $yellow    
+        color: $darkblue

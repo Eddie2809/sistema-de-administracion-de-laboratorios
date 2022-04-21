@@ -1,5 +1,8 @@
-<script></script>
+<script>
+</script>
 
 <template>
-    Consultar horarios
+    <div class="container Home">
+        Consultar horarios
+    </div>
 </template>

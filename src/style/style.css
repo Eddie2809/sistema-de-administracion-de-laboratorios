@@ -12,6 +12,43 @@
   min-height: 100vh;
 }
 
+.MainComponent {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.container {
+  margin-top: 79px;
+  padding: 30px 70px 30px 70px;
+}
+
+.calendarContainer .fc-icon {
+  color: white;
+}
+
+.calendarContainer .fc-col-header {
+  background-color: #2C3E50;
+  border-radius: 10px 10px 0 0;
+}
+
+.calendarContainer .fc-col-header-cell-cushion {
+  color: white;
+}
+
+.calendarContainer .fc-theme-standard .fc-scrollgrid {
+  border-radius: 11px 11px 0 0;
+}
+
+.calendarContainer .fc-event-title {
+  color: white;
+}
+
 footer {
   background-color: #323232;
   width: 100%;
@@ -19,15 +56,23 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-top: auto;
+}
+
+footer img {
+  position: absolute;
+  right: 70px;
+}
+
+footer p {
+  margin: auto;
 }
 
 footer a {
+  text-decoration: none;
   color: white;
 }
 
@@ -48,6 +93,9 @@ footer a u {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  z-index: 100;
 }
 
 .navbar img {
@@ -67,6 +115,21 @@ footer a u {
   color: #FFF700;
 }
 
+.navbar .loginButton {
+  color: #FFF700;
+  background-color: rgba(0, 0, 0, 0);
+  border: 2px solid #FFF700;
+  padding: 10px;
+  border-radius: 5px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.navbar .loginButton:hover {
+  -webkit-animation: loginButtonHover 0.3s forwards;
+          animation: loginButtonHover 0.3s forwards;
+}
+
 .navbar li {
   color: white;
   display: inline-block;
@@ -81,5 +144,19 @@ footer a u {
 
 .navbar li:hover {
   color: #FFF700;
+}
+
+@-webkit-keyframes loginButtonHover {
+  100% {
+    background-color: #FFF700;
+    color: #2C3E50;
+  }
+}
+
+@keyframes loginButtonHover {
+  100% {
+    background-color: #FFF700;
+    color: #2C3E50;
+  }
 }
 /*# sourceMappingURL=style.css.map */

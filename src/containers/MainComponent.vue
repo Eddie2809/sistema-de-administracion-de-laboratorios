@@ -17,8 +17,12 @@
                 route: 'home',
                 userData: {tipo: 'null'},
                 labsList: [],
-                usersList: []
+                usersList: [],
+                events: []
             }
+        },
+        mounted(){
+            this.getEvents(1)
         },
         components: {
             MyReservations,
@@ -79,7 +83,18 @@
                 .then(() => alert('Hecho'))
             },
             getEvents(labId){
-                this.fetchData('get-events',{labId}).then(res => console.log(res))
+                this.fetchData('get-events',{labId}).then(res => {
+                    let events = []
+                    res.forEach(ob => {
+                        events.push({
+                            start: ob.start.slice(0,19),
+                            end: ob.end.slice(0,19),
+                            title: ob.userName + ' ' + ob.userLastname,
+                        })
+                    })
+                    this.events = events
+                    console.log(events)
+                })
             },
             evaluateReservation(reservationId,response,msg){
                 this.fetchData('evaluate-reservation',{
@@ -97,7 +112,6 @@
                     else{
                         this.route = 'home'
                         this.userData = res
-                        console.log(res)
                         alert('Has ingresado')
                     }
                 })
@@ -170,7 +184,7 @@
         <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
         <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
-        <Home v-if="this.route === 'home'"/>
+        <Home v-if="this.route === 'home'" :events="events"/>
         <LabsList v-if="this.route === 'labslist'"/>
         <ManageReservations v-if="this.route === 'managereservations'"/>
         <MyReservations v-if="this.route === 'myreservations'"/>

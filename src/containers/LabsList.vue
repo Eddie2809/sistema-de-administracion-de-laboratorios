@@ -1,5 +1,5 @@
 <script></script>
 
 <template>
-    Lista de laboratorios
+    <div class="container LabsList">Lista de laboratorios</div>
 </template>

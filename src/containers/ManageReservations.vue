@@ -1,5 +1,7 @@
 <script></script>
 
 <template>
-    Administrar reservaciones
+    <div class="container ManageReservations">
+        Administrar reservaciones
+    </div>
 </template>

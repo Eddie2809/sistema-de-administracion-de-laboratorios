@@ -1,5 +1,5 @@
 <script></script>
 
 <template>
-    Herramientas de administrador
+    <div class="container AdminTools">Herramientas de administrador</div>
 </template>

@@ -1,5 +1,7 @@
 <script></script>
 
 <template>
-    Hacer solicitud de reservacion
+    <div class="container ReservationRequest">
+        Hacer solicitud de reservación
+    </div>
 </template>

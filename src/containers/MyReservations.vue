@@ -1,5 +1,7 @@
 <script></script>
 
 <template>
-    Mis reservaciones
+    <div class="container MyReservations">
+        Mis reservaciones
+    </div>
 </template>

@@ -15,7 +15,7 @@
             <li :class="this.route === 'managereservations'? 'selected':null" v-if="this.userType === 'encargado'" @click="this.changeRoute('managereservations')">Administrar solicitudes</li>
             <li :class="this.route === 'admintools'? 'selected':null" v-if="this.userType === 'administrador'" @click="this.changeRoute('admintools')">Herramientas de administrador</li>
             <li :class="this.route === 'login'? 'selected':null" v-if="this.userType !== 'null'" @click="this.logOut()">Cerrar sesión</li>
-            <li class="loginButton" v-if="this.userType === 'null'" @click="this.changeRoute('login')">Iniciar sesión</li>
+            <button class="loginButton" v-if="this.userType === 'null'" @click="this.changeRoute('login')">Iniciar sesión</button>
         </ul>
     </nav>
 </template>
