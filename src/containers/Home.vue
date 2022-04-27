@@ -1,4 +1,10 @@
 <script>
+/* 
+    Asignado a: Rudygei    
+
+    Funciones útiles:
+    -getEvents
+*/
 </script>
 
 <template>

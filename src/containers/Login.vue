@@ -1,9 +1,19 @@
 <script>
+    /*
+        Asignado a: Erick 
+
+        Notas:
+        -Las imágenes necesarias las puedes importar de assets
+
+        Funciones útiles:
+        -evaluateCredentials
+    */
+
     export default {
         data(){
             return {
-                username: "eddvar",
-                password: "o8OR1e8HYo"
+                username: "",
+                password: ""
             }
         },
         props: ['evaluateCredentials']

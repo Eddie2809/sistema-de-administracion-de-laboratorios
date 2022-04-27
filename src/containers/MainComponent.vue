@@ -36,6 +36,9 @@
             AdminTools
         },
         methods: {
+
+            // IGNORAR
+            // ===============================================================================
             async fetchData(route,bodyObject){
                 const resp = await fetch(apiURL + route, {
                     method: 'post',
@@ -51,9 +54,20 @@
                 }).then(res => res.json())
                 return resp
             },
+
             changeRoute(newRoute){
                 this.route = newRoute
             },
+            //===============================================================================
+
+                
+            // Añade nueva reservación a la base de datos con sus respectivas horas, si no se especifico razón
+            // puedes añadir una string vacia, el formato de horas es una lista de objetos, el formato del 
+            // objeto es el siguiente:
+            /*
+                start: new Date('yyyy-mm-ddThh:mm:ss')
+                end: new Date('yyyy-mm-ddThh:mm:ss')
+             */
             createNewReservation(reason,labId,hours){
                 this.fetchData('new-reservation',{
                     reason: reason,
@@ -66,6 +80,9 @@
                     alert('Algo salió mal')
                 })
             },
+
+            // Añadir nuevo laboratorio a la base de datos, solo especifica el nombre y la id de encargado, en
+            // caso de que no haya todavía un encargadi asignado puedes escribir -1 en el campo y se deja vacio
             addNewLab(name,labManager){
                 this.fetchData('add-new-lab',{
                     name: name,
@@ -73,6 +90,8 @@
                 })
                 .then(() => alert('Hecho'))
             },
+
+            // Añade nuevo usuario a la base de datos, todos los campos tienen que ser llenados
             addNewUser(name,lastname,email,usertype){
                 this.fetchData('user-signup',{
                     name: name,
@@ -82,6 +101,8 @@
                 })
                 .then(() => alert('Hecho'))
             },
+
+            // Asigna los eventos de un respectivo laboratorio a this.events
             getEvents(labId){
                 this.fetchData('get-events',{labId}).then(res => {
                     let events = []
@@ -93,9 +114,11 @@
                         })
                     })
                     this.events = events
-                    console.log(events)
                 })
             },
+
+            // Rechaza o acepta una reservación, si no hay mensaje puedes enviar una string vacia, si se acepta
+            // la solicitud, entonces escribir 1 en response, caso contrario escribir 0
             evaluateReservation(reservationId,response,msg){
                 this.fetchData('evaluate-reservation',{
                     newStatus: response,
@@ -104,6 +127,9 @@
                 })
                 .then(() => alert('Hecho'))
             },
+
+            // Evalua si el username y la password son correctas, si lo son cambia de ruta y recupera la infor-
+            // mación
             evaluateCredentials(username,password){
                 this.fetchData('login',{username: username,password: password}).then(res => {
                     if(res === 'Credenciales inválidas'){
@@ -116,6 +142,9 @@
                     }
                 })
             },
+
+            // Te da la capacidad de modificar el nombre o disponibilidad de un laboratorio, en caso de querer
+            // modificar solamente uno, puedes escribir en el otro campo el mismo valor, pero no dejar vacio.
             modifyLab(labId,newName,disp){
                 fetchData('modify-lab',{
                     id: labId,
@@ -124,6 +153,8 @@
                 })
                 .then(res => alert('Hecho'))
             },
+
+            // Te da la capacidad de cambiar el encargado de algún laboratorio.
             assignLabManager(labId,newManagerId){
                 this.fetchData('assign-lab-manager',{
                     labId: labId,
@@ -131,23 +162,35 @@
                 })
                 .then(res => alert('Hecho'))
             },
+
+            // Eliminar de la base de datos el laboratorio con su respectivo id
             deleteLab(labId){
                 this.fetchData('delete-lab',{labId: labId}).then(res => alert('Hecho'))
             },
+
+            // Asigna la lista de laboratorios con sus respectivos encargados a this.labsList
             getLabs(){
                 this.fetchGet('get-labs').then(res => {
                     this.labsList = res
                 })
             },
+
+            // Asigna a this.usersList la lista de los usuarios registrados en la base de datos.
             getUsers(){
                 this.fetchGet('get-users').then(res => {
                     this.usersList = res
                 })
             },
+
+            // Elimina un usuario de la base de datos utilizando su id
             deleteUser(userId){
                 this.fetchData('deleteUser',{userId: userId})
                 .then(res => alert('Hecho'))
             },
+
+            // Modifica los datos de un usuario, en los campos de los datos que no se vayan a cambiar tiene que
+            // especificarse el dato actual. Se recomienda solo usar newUserType en caso de querer hacer admi-
+            // nistrador a un usuario
             modifyUser(userId,newName,newLastname,newEmail, newPassword,newUsername,newUsertype){
                 this.fetchData('modify-user',{
                     userId: userId,
@@ -160,17 +203,25 @@
                 })
                 .then(res => alert('Hecho'))
             },
+
+            //Pendiente
             getReportData(data){
                 this.fetchGet('get-report-data').then(res => data = res)
             },
+
+            // Cambia la disponibilidad de un laboratorio (True si disponible, false si no disponible)
             changeLabStatus(labId,newStatus){
                 this.fetchData('switch-lab-status',{status: newStatus,labId: labId})
                 .then(() => alert('Hecho'))
             },
+
+            // Cancela la reservación con la id reservationId
             cancelReservation(reservationId){
                 this.fetchData('cancel-reservation',{reservationId: reservationId})
                 .then(() => alert('Hecho'))
             },
+
+            // Cierra sesión
             logOut(){
                 this.userData = {tipo: 'null'}
                 this.route = 'home'
