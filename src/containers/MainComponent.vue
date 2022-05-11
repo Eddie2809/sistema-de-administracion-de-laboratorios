@@ -19,7 +19,8 @@
                 labsList: [],
                 usersList: [],
                 events: [],
-                reservations: []
+                reservations: [],
+                reportData: []
             }
         },
         mounted(){
@@ -220,8 +221,10 @@
             },
 
             //Pendiente
-            getReportData(data){
-                this.fetchGet('get-report-data').then(res => data = res)
+            getReportData(labId){
+                this.fetchData('get-report-data',{labId: labId}).then(res => {
+                    this.reportData = res
+                })
             },
 
             // Cambia la disponibilidad de un laboratorio (True si disponible, false si no disponible)
