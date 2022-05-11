@@ -18,7 +18,8 @@
                 userData: {tipo: 'null'},
                 labsList: [],
                 usersList: [],
-                events: []
+                events: [],
+                reservations: []
             }
         },
         mounted(){
@@ -81,8 +82,22 @@
                 })
             },
 
+            // Obtiene la lista de reservaciones del laboratorio o usuario especificados, en caso de no querer
+            // especificar el usuario o laboratorio pasar -1 de parámetro.
+            getReservations(labId,userId){
+                this.fetchData('get-reservations',{
+                    labId: labId,
+                    userId: userId
+                })
+                .then(reservations => {
+                    this.events = reservations
+                    console.log(reservations)
+                })
+                .catch(err => alert('Algo salio mal'))
+            },
+
             // Añadir nuevo laboratorio a la base de datos, solo especifica el nombre y la id de encargado, en
-            // caso de que no haya todavía un encargadi asignado puedes escribir -1 en el campo y se deja vacio
+            // caso de que no haya todavía un encargado asignado puedes escribir -1 en el campo y se deja vacio
             addNewLab(name,labManager){
                 this.fetchData('add-new-lab',{
                     name: name,
@@ -235,7 +250,7 @@
         <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
         <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
-        <Home v-if="this.route === 'home'" :events="events"/>
+        <Home v-if="this.route === 'home'" :events="events" :getReservations="getReservations"/>
         <LabsList v-if="this.route === 'labslist'"/>
         <ManageReservations v-if="this.route === 'managereservations'"/>
         <MyReservations v-if="this.route === 'myreservations'"/>

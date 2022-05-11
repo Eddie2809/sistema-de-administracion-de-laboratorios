@@ -1,4 +1,12 @@
 <script>
+    import Calendar from '../components/Calendar.vue'
+
+    export default {
+        props: ['getReservations'],
+        components: {
+            Calendar
+        },
+    }
 /* 
     Asignado a: Rudygei    
 
@@ -9,6 +17,6 @@
 
 <template>
     <div class="container Home">
-        Consultar horarios
+        <Calendar :events="[{}]"/>
     </div>
 </template>

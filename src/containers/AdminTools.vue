@@ -21,6 +21,7 @@
     -deleteUser
     -changeLabStatus (Para administrar solicitudes)
     -getEvents (Para generar vista previa)
+    -getReservations
 */
 </script>
 

@@ -15,6 +15,7 @@
         -evaluateReservation
         -getReportData
         -cancelReservation
+        -getReservations
     */
 </script>
 
