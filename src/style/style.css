@@ -197,8 +197,6 @@ footer a u {
   display: grid;
   -ms-grid-columns: 33% 33% 33%;
       grid-template-columns: 33% 33% 33%;
-  -ms-grid-rows: 10% 90%;
-      grid-template-rows: 10% 90%;
 }
 
 .encabezado-lista {
