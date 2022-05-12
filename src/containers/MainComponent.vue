@@ -11,7 +11,7 @@
 
     const apiURL = 'https://salunicaribe-api.herokuapp.com/'
 
-    export default{
+    export default ({
         data(){
             return{
                 route: 'home',
@@ -20,11 +20,9 @@
                 usersList: [],
                 events: [],
                 reservations: [],
-                reportData: []
+                reportData: [],
+                newUserData: {}
             }
-        },
-        mounted(){
-            this.getEvents(1)
         },
         components: {
             MyReservations,
@@ -67,17 +65,20 @@
             // puedes añadir una string vacia, el formato de horas es una lista de objetos, el formato del 
             // objeto es el siguiente:
             /*
-                start: new Date('yyyy-mm-ddThh:mm:ss')
-                end: new Date('yyyy-mm-ddThh:mm:ss')
+                inicio: new Date('yyyy-mm-ddThh:mm:ss')
+                final: new Date('yyyy-mm-ddThh:mm:ss')
              */
             createNewReservation(reason,labId,hours){
                 this.fetchData('new-reservation',{
                     reason: reason,
-                    userId: this.userId,
+                    userId: this.userData.id,
                     labId: labId,
                     hours: hours
                 })
-                .then(() => alert('Hecho'))
+                .then(res => {
+                    if(res !== 'Éxito') alert('Algo salió mal')
+                    else alert('Hecho!')
+                })
                 .catch(err => {
                     alert('Algo salió mal')
                 })
@@ -92,7 +93,6 @@
                 })
                 .then(reservations => {
                     this.events = reservations
-                    console.log(reservations)
                 })
                 .catch(err => alert('Algo salio mal'))
             },
@@ -107,7 +107,10 @@
                 .then(() => alert('Hecho'))
             },
 
-            // Añade nuevo usuario a la base de datos, todos los campos tienen que ser llenados
+            // Añade nuevo usuario a la base de datos, todos los campos tienen que ser llenados, usertypes:
+            // 1: Administrador
+            // 2: Encargado de laboratorio 
+            // 3: Docente
             addNewUser(name,lastname,email,usertype){
                 this.fetchData('user-signup',{
                     name: name,
@@ -115,12 +118,15 @@
                     email: email,
                     usertype: usertype
                 })
-                .then(() => alert('Hecho'))
+                .then(res => {
+                    this.newUserData = res
+                })
             },
 
             // Asigna los eventos de un respectivo laboratorio a this.events
             getEvents(labId){
                 this.fetchData('get-events',{labId}).then(res => {
+                    console.log(res)
                     let events = []
                     res.forEach(ob => {
                         events.push({
@@ -162,7 +168,7 @@
             // Te da la capacidad de modificar el nombre o disponibilidad de un laboratorio, en caso de querer
             // modificar solamente uno, puedes escribir en el otro campo el mismo valor, pero no dejar vacio.
             modifyLab(labId,newName,disp){
-                fetchData('modify-lab',{
+                this.fetchData('modify-lab',{
                     id: labId,
                     newName: newName,
                     disp: disp
@@ -170,13 +176,16 @@
                 .then(res => alert('Hecho'))
             },
 
-            // Te da la capacidad de cambiar el encargado de algún laboratorio.
+            // Te da la capacidad de cambiar el encargado de algún laboratorio. Si se desea eliminar un encar-
+            // gado, escribir -1 en el campo de newManagerId
             assignLabManager(labId,newManagerId){
                 this.fetchData('assign-lab-manager',{
                     labId: labId,
                     userId: newManagerId
                 })
-                .then(res => alert('Hecho'))
+                .then(res => {
+                    alert(res)
+                })
             },
 
             // Eliminar de la base de datos el laboratorio con su respectivo id
@@ -245,7 +254,7 @@
                 this.route = 'home'
             }
         }
-    }
+    })
 </script>
 
 <template>
@@ -253,7 +262,7 @@
         <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
         <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
-        <Home v-if="this.route === 'home'" :events="events" :getReservations="getReservations"/>
+        <Home v-if="this.route === 'home'" :events="events" :func="deleteLab"/>
         <LabsList v-if="this.route === 'labslist'"/>
         <ManageReservations v-if="this.route === 'managereservations'"/>
         <MyReservations v-if="this.route === 'myreservations'"/>
