@@ -30,7 +30,7 @@
                         minute: 'numeric'
                     },
                     firstDay: 1,
-                    height: 450,
+                    height: 860,
                     displayEventTime: false,
                     events: this.events
                 }
@@ -47,9 +47,7 @@
 
 <style>
     .calendarContainer{
-        width: 80%;
-        border: 1px solid black;
+        width: 100%;
         padding: 20px;
-        border-radius: 10px;
     }
 </style>

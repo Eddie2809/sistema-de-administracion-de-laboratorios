@@ -11,18 +11,18 @@
 
     const apiURL = 'https://salunicaribe-api.herokuapp.com/'
 
-    export default{
+    export default ({
         data(){
             return{
                 route: 'home',
                 userData: {tipo: 'null'},
                 labsList: [],
                 usersList: [],
-                events: []
+                events: [],
+                reservations: [],
+                reportData: [],
+                newUserData: {}
             }
-        },
-        mounted(){
-            this.getEvents(1)
         },
         components: {
             MyReservations,
@@ -65,24 +65,40 @@
             // puedes añadir una string vacia, el formato de horas es una lista de objetos, el formato del 
             // objeto es el siguiente:
             /*
-                start: new Date('yyyy-mm-ddThh:mm:ss')
-                end: new Date('yyyy-mm-ddThh:mm:ss')
+                inicio: new Date('yyyy-mm-ddThh:mm:ss')
+                final: new Date('yyyy-mm-ddThh:mm:ss')
              */
             createNewReservation(reason,labId,hours){
                 this.fetchData('new-reservation',{
                     reason: reason,
-                    userId: this.userId,
+                    userId: this.userData.id,
                     labId: labId,
                     hours: hours
                 })
-                .then(() => alert('Hecho'))
+                .then(res => {
+                    if(res !== 'Éxito') alert('Algo salió mal')
+                    else alert('Hecho!')
+                })
                 .catch(err => {
                     alert('Algo salió mal')
                 })
             },
 
+            // Obtiene la lista de reservaciones del laboratorio o usuario especificados, en caso de no querer
+            // especificar el usuario o laboratorio pasar -1 de parámetro.
+            getReservations(labId,userId){
+                this.fetchData('get-reservations',{
+                    labId: labId,
+                    userId: userId
+                })
+                .then(reservations => {
+                    this.events = reservations
+                })
+                .catch(err => alert('Algo salio mal'))
+            },
+
             // Añadir nuevo laboratorio a la base de datos, solo especifica el nombre y la id de encargado, en
-            // caso de que no haya todavía un encargadi asignado puedes escribir -1 en el campo y se deja vacio
+            // caso de que no haya todavía un encargado asignado puedes escribir -1 en el campo y se deja vacio
             addNewLab(name,labManager){
                 this.fetchData('add-new-lab',{
                     name: name,
@@ -91,7 +107,10 @@
                 .then(() => alert('Hecho'))
             },
 
-            // Añade nuevo usuario a la base de datos, todos los campos tienen que ser llenados
+            // Añade nuevo usuario a la base de datos, todos los campos tienen que ser llenados, usertypes:
+            // 1: Administrador
+            // 2: Encargado de laboratorio 
+            // 3: Docente
             addNewUser(name,lastname,email,usertype){
                 this.fetchData('user-signup',{
                     name: name,
@@ -99,12 +118,19 @@
                     email: email,
                     usertype: usertype
                 })
-                .then(() => alert('Hecho'))
+                .then(res => {
+                    this.newUserData = res
+                    let msg
+                    if(res.contrasena) msg = 'Usuario registrado con la siguiente información:\n\nNombre de usuario: ' + res.nombre_de_usuario + '\nContraseña: ' + res.contrasena + '\n\nIMPORTANTE: ESTE MENSAJE SOLO LO PODRÁ VER UNA VEZ'
+                    else msg = 'Hubo un error'
+                    alert (msg)
+                })
             },
 
             // Asigna los eventos de un respectivo laboratorio a this.events
             getEvents(labId){
                 this.fetchData('get-events',{labId}).then(res => {
+                    console.log(res)
                     let events = []
                     res.forEach(ob => {
                         events.push({
@@ -146,7 +172,7 @@
             // Te da la capacidad de modificar el nombre o disponibilidad de un laboratorio, en caso de querer
             // modificar solamente uno, puedes escribir en el otro campo el mismo valor, pero no dejar vacio.
             modifyLab(labId,newName,disp){
-                fetchData('modify-lab',{
+                this.fetchData('modify-lab',{
                     id: labId,
                     newName: newName,
                     disp: disp
@@ -154,13 +180,16 @@
                 .then(res => alert('Hecho'))
             },
 
-            // Te da la capacidad de cambiar el encargado de algún laboratorio.
+            // Te da la capacidad de cambiar el encargado de algún laboratorio. Si se desea eliminar un encar-
+            // gado, escribir -1 en el campo de newManagerId
             assignLabManager(labId,newManagerId){
                 this.fetchData('assign-lab-manager',{
                     labId: labId,
                     userId: newManagerId
                 })
-                .then(res => alert('Hecho'))
+                .then(res => {
+                    alert(res)
+                })
             },
 
             // Eliminar de la base de datos el laboratorio con su respectivo id
@@ -184,8 +213,9 @@
 
             // Elimina un usuario de la base de datos utilizando su id
             deleteUser(userId){
-                this.fetchData('deleteUser',{userId: userId})
-                .then(res => alert('Hecho'))
+                this.fetchData('delete-user',{userId: userId})
+                .then(res => alert(res))
+                .catch(err => alert(err))
             },
 
             // Modifica los datos de un usuario, en los campos de los datos que no se vayan a cambiar tiene que
@@ -204,9 +234,13 @@
                 .then(res => alert('Hecho'))
             },
 
-            //Pendiente
-            getReportData(data){
-                this.fetchGet('get-report-data').then(res => data = res)
+            // Obtiene todos los datos relacionados a las horas existentes de un laboratorio especificado, en
+            // caso de querer obtener los datos de todos los laboratorios escribir -1
+            getReportData(labId){
+                this.fetchData('get-report-data',{labId: labId}).then(res => {
+                    this.reportData = res
+                    console.log(res)
+                })
             },
 
             // Cambia la disponibilidad de un laboratorio (True si disponible, false si no disponible)
@@ -227,7 +261,7 @@
                 this.route = 'home'
             }
         }
-    }
+    })
 </script>
 
 <template>
@@ -235,8 +269,8 @@
         <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
         <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
-        <Home v-if="this.route === 'home'" :events="events"/>
-        <LabsList v-if="this.route === 'labslist'"/>
+        <Home v-if="this.route === 'home'" :getLabs="getLabs" :getEvents="getEvents" :labsList="this.labsList" :events="events"/>
+        <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList" />
         <ManageReservations v-if="this.route === 'managereservations'"/>
         <MyReservations v-if="this.route === 'myreservations'"/>
         <ReservationRequest v-if="this.route === 'reservationrequest'"/>

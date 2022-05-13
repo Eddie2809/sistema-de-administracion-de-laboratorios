@@ -8,7 +8,7 @@
         -Reservaciones inactivas son aquellas con estado 0
 
         Funciones útiles:
-        -No hai sorri unu
+        -getReservations
     */
 </script>
 

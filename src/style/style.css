@@ -28,6 +28,16 @@
   padding: 30px 70px 30px 70px;
 }
 
+.title {
+  font-size: 1.5rem;
+  font-weight: 900;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  font-weight: 900;
+}
+
 .calendarContainer .fc-icon {
   color: white;
 }
@@ -160,6 +170,49 @@ footer a u {
   }
 }
 
+.Home {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.Home .title {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.Home .subtitle {
+  margin-bottom: 20px;
+}
+
+.Home .labInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.Home .labInput p {
+  margin-right: 20px;
+}
+
+.Home .labInput select {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.Home hr {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  border-top: none;
+  color: #b6b6b6;
+}
+
 .body-style {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -197,8 +250,6 @@ footer a u {
   display: grid;
   -ms-grid-columns: 33% 33% 33%;
       grid-template-columns: 33% 33% 33%;
-  -ms-grid-rows: 10% 90%;
-      grid-template-rows: 10% 90%;
 }
 
 .encabezado-lista {

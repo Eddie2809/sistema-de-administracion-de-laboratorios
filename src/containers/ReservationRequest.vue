@@ -7,7 +7,7 @@
     -No puedes enviar una solicitud sin al menos una reservación
     -Consultar reservaciones en fines de semana
     -Hora de inicio empieza a partir de las 7 y hora de fin consultar con el cliente
-    -Verificar disponibilidad de laboratorio
+    -Verificar disponibilidad de laboratorio IMPORTANTE
     -No puedes reservar por el resto del semestre si tienes especificado un número de semanas y vice versa
     -En el calendario inferior ir añadiendo los eventos a modo de vista previa con color diferente
     -Mostrar los eventos del laboratorio escogido en el calendario inferior
