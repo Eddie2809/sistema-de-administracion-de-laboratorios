@@ -120,6 +120,10 @@
                 })
                 .then(res => {
                     this.newUserData = res
+                    let msg
+                    if(res.contrasena) msg = 'Usuario registrado con la siguiente información:\n\nNombre de usuario: ' + res.nombre_de_usuario + '\nContraseña: ' + res.contrasena + '\n\nIMPORTANTE: ESTE MENSAJE SOLO LO PODRÁ VER UNA VEZ'
+                    else msg = 'Hubo un error'
+                    alert (msg)
                 })
             },
 
@@ -209,8 +213,9 @@
 
             // Elimina un usuario de la base de datos utilizando su id
             deleteUser(userId){
-                this.fetchData('deleteUser',{userId: userId})
-                .then(res => alert('Hecho'))
+                this.fetchData('delete-user',{userId: userId})
+                .then(res => alert(res))
+                .catch(err => alert(err))
             },
 
             // Modifica los datos de un usuario, en los campos de los datos que no se vayan a cambiar tiene que
@@ -229,10 +234,12 @@
                 .then(res => alert('Hecho'))
             },
 
-            //Pendiente
+            // Obtiene todos los datos relacionados a las horas existentes de un laboratorio especificado, en
+            // caso de querer obtener los datos de todos los laboratorios escribir -1
             getReportData(labId){
                 this.fetchData('get-report-data',{labId: labId}).then(res => {
                     this.reportData = res
+                    console.log(res)
                 })
             },
 
@@ -262,7 +269,7 @@
         <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
         <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
-        <Home v-if="this.route === 'home'" :events="events" :func="deleteLab"/>
+        <Home v-if="this.route === 'home'" :getLabs="getLabs" :getEvents="getEvents" :labsList="this.labsList" :events="events"/>
         <LabsList v-if="this.route === 'labslist'"/>
         <ManageReservations v-if="this.route === 'managereservations'"/>
         <MyReservations v-if="this.route === 'myreservations'"/>
