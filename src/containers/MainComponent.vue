@@ -263,7 +263,7 @@
         <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
         <Home v-if="this.route === 'home'" :events="events" :func="deleteLab"/>
-        <LabsList v-if="this.route === 'labslist'"/>
+        <LabsList v-if="this.route === 'labslist'" :list="this.labsList" :getLabs="getLabs"/>
         <ManageReservations v-if="this.route === 'managereservations'"/>
         <MyReservations v-if="this.route === 'myreservations'"/>
         <ReservationRequest v-if="this.route === 'reservationrequest'"/>
