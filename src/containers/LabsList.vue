@@ -17,6 +17,10 @@ export default {
                 { laboratorio: "Laboratorio de Ingenieria de Software", nombre: "Yarely Baez López", correo: "ybaez@ucaribe.edu.mx", id: id++}
             ]
         }
+    },
+    props: ['list', 'getLabs'],
+    mounted() {
+        this.getLabs()
     }
 }
 </script>
@@ -29,20 +33,18 @@ export default {
                 <p>Buscar:</p>
                 <input v-model="text" placeholder="Laboratorio, encargado o correo">
             </div>
-        
+            
             <div class="grid-lista">
                 <h2 class="encabezado-lista">Nombre de laboratorio</h2>
                 <h2 class="encabezado-lista">Encargado</h2>
                 <h2 class="encabezado-lista">Correo</h2>
             </div>
 
-            <div class="grid-lista" v-for="todo in todos" :key="todo.key"> 
-                <p >{{todo.laboratorio}}</p>
-                <p >{{todo.nombre}}</p>
-                <p >{{todo.correo}}</p>
+            <div class="grid-lista" v-for="todo in list" :key="todo.id_laboratorio">
+                <p >{{todo.nombre_laboratorio}}</p>
+                <p >{{todo.nombre_encargado + " " + todo.apellido_encargado}}</p>
+                <p >{{todo.correo_encargado}}</p>
             </div>
-        </div>        
-
+        </div>
     </div>
-    
 </template>

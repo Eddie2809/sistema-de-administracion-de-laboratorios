@@ -270,7 +270,7 @@
         <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
         <Home v-if="this.route === 'home'" :getLabs="getLabs" :getEvents="getEvents" :labsList="this.labsList" :events="events"/>
-        <LabsList v-if="this.route === 'labslist'"/>
+        <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.LabsList" />
         <ManageReservations v-if="this.route === 'managereservations'"/>
         <MyReservations v-if="this.route === 'myreservations'"/>
         <ReservationRequest v-if="this.route === 'reservationrequest'"/>
