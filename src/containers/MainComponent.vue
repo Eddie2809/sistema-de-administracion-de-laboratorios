@@ -267,7 +267,7 @@
 <template>
     <div class="MainComponent">
         <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
-        <Login v-if="this.route === 'login'" :evaluateCredentials="evaluateCredentials"/>
+        <Login v-if="this.route === 'login'" :changeRoute="changeRoute" :evaluateCredentials="evaluateCredentials"/>
         <AdminTools v-if="this.route === 'admintools'"/>
         <Home v-if="this.route === 'home'" :getLabs="getLabs" :getEvents="getEvents" :labsList="this.labsList" :events="events"/>
         <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList" />
