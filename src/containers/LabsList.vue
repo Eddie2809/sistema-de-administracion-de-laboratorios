@@ -10,11 +10,15 @@ let id = 0
 export default {
     data() {
         return {
-            text: ''
+            input: ''
         }
     },
-    computed() {
-
+    computed: {
+        filteredItems() {
+            return this.list.filter((i) =>{
+                return i.nombre_laboratorio.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.nombre_encargado.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.apellido_encargado.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.correo_encargado.toLowerCase().indexOf(this.input.toLowerCase()) != -1;
+            });
+        }
     },
     props: ['list', 'getLabs'],
     mounted() {
@@ -29,7 +33,7 @@ export default {
             <h1>Laboratorios</h1>
             <div class="search-style">
                 <p>Buscar:</p>
-                <input v-model="text" placeholder="Laboratorio, encargado o correo">
+                <input v-model="input" placeholder="Laboratorio, encargado o correo">
             </div>
             
             <div class="grid-lista">
@@ -38,10 +42,10 @@ export default {
                 <h2 class="encabezado-lista">Correo</h2>
             </div>
 
-            <div class="grid-lista" v-for="todo in list" :key="todo.id_laboratorio">
-                <p >{{todo.nombre_laboratorio}}</p>
-                <p >{{todo.nombre_encargado + " " + todo.apellido_encargado}}</p>
-                <p >{{todo.correo_encargado}}</p>
+            <div class="grid-lista" v-for="item in filteredItems" :key="item.id_laboratorio">
+                <p >{{item.nombre_laboratorio}}</p>
+                <p >{{item.nombre_encargado + " " + item.apellido_encargado}}</p>
+                <p >{{item.correo_encargado}}</p>
             </div>
         </div>
     </div>
