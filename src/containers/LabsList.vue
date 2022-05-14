@@ -10,13 +10,11 @@ let id = 0
 export default {
     data() {
         return {
-            text: '',
-            todos: [
-                { laboratorio: "Laboratorio de Ingenieria de Software", nombre: "Yarely Baez López", correo: "ybaez@ucaribe.edu.mx", id: id++},
-                { laboratorio: "Laboratorio de Ingenieria de Software", nombre: "Yarely Baez López", correo: "ybaez@ucaribe.edu.mx", id: id++},
-                { laboratorio: "Laboratorio de Ingenieria de Software", nombre: "Yarely Baez López", correo: "ybaez@ucaribe.edu.mx", id: id++}
-            ]
+            text: ''
         }
+    },
+    computed() {
+
     },
     props: ['list', 'getLabs'],
     mounted() {

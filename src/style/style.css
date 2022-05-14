@@ -213,7 +213,7 @@ footer a u {
   color: #b6b6b6;
 }
 
-.body-style {
+.LabsList .body-style {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -223,11 +223,11 @@ footer a u {
           flex-direction: column;
 }
 
-.body-style > h1 {
+.LabsList .body-style > h1 {
   font-size: 1.5rem;
 }
 
-.search-style {
+.LabsList .search-style {
   display: inherit;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
@@ -237,27 +237,27 @@ footer a u {
   margin-bottom: 3vh;
 }
 
-.search-style > p {
+.LabsList .search-style > p {
   margin-right: 1vw;
 }
 
-.search-style > input {
+.LabsList .search-style > input {
   border-radius: 5px;
 }
 
-.grid-lista {
+.LabsList .grid-lista {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 33% 33% 33%;
       grid-template-columns: 33% 33% 33%;
 }
 
-.encabezado-lista {
+.LabsList .encabezado-lista {
   margin-bottom: 3vh;
   font-size: 1.25rem;
 }
 
-.grid-lista > p {
+.LabsList .grid-lista > p {
   margin-bottom: 1.5vh;
 }
 
@@ -623,24 +623,6 @@ footer a u {
 
 .buttons {
   text-align: center;
-}
-
-.green_button {
-  width: 121px;
-  height: 30px;
-  background: #179D24;
-  border-radius: 15px;
-  border: none;
-  color: white;
-}
-
-.red_button {
-  width: 121px;
-  height: 30px;
-  background: #EB2424;
-  border-radius: 15px;
-  border: none;
-  color: white;
 }
 
 .cancel_button {
