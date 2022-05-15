@@ -1,12 +1,43 @@
 <script>
+    /*userData
+    apellido: "Duran Cortes"
+    contrasena: "cE9FEJ8nRO"
+    correo: "190300379@ucaribe.edu.mx"
+    id: 5
+    nombre: "Bryan Julian"
+    nombre_de_usuario: "brydur"
+    tipo: "encargado"*/
+
+    /*reservations
+    datosReservacion:
+    apellidoSolicitante: "Vargas Mendoza"
+    completado: false
+    estado: 2
+    fechaPeticion: "2022-04-20T04:58:01.000Z"
+    idLaboratorio: 1
+    idReservacion: 5
+    idSolicitante: 1
+    motivoRechazo: null
+    nombreLaboratorio: "Laboratorio de Ingeniería de Software"
+    nombreSolicitante: "Eddie Alejandro"
+    razonSolicitud: "hace falta pa"*/
+
+    /*Lablist
+    apellido_encargado: "Duran Cortes"
+    correo_encargado: "190300379@ucaribe.edu.mx"
+    id_encargado: 5
+    id_laboratorio: 2
+    nombre_encargado: "Bryan Julian"
+    nombre_laboratorio: "Laboratorio de*/
+
     /* 
         Asignado a: Bryan
 
         Notas: 
-        -Abrir ventana de confirmación para cancelar reservación
-        -Abrir ventana para escribir motivo de rechazo al rechazar una reservación
-        -La vista previa es para que el encargado vea como quedaría el horario si aceptara esa reservación
-        -En 'Estado' puedes permitir o rechazar las solicitudes de reservación
+        -Abrir ventana de confirmación para cancelar reservación (1/2)
+        -Abrir ventana para escribir motivo de rechazo al rechazar una reservación (1/2)
+        -La vista previa es para que el encargado vea como quedaría el horario si aceptara esa reservación  (X)
+        -En 'Estado' puedes permitir o rechazar las solicitudes de reservación (1/2)
         -Reservaciones activas son aquellas con estado 1
         -Reservaciones inactivas son aquellas con estado 0
         -Esta pendiente la función para obtener las reservaciones :(
@@ -17,20 +48,48 @@
         -cancelReservation
         -getReservations
     */
+    import Table from '../components/Table.vue'
+   
+    export default{
+        data(){
+            return{
+                id_lab: ''
+            }
+        },
+        computed: {
+            getLab() {
+                return this.labsList.filter((i) =>{
+                    if(i.id_encargado == this.userData.id){
+                        this.id_lab = i.id_laboratorio
+                        return i.id_encargado;
+                    }
+                });
+            }
+        },
+        props: ['getReservations', 'userData', 'labsList', 'reservations', 'getLabs'],
+        mounted() {
+            this.getReservations(this.id_lab, -1)
+            this.getLabs()
+        },
+        components: {
+            Table
+        }
+    }
 </script>
 
 <template>
     <div class="container ManageReservations">
         <div class="body-style">
-            <div class="Titulo">
+            <div class="title">
                 <h1>Solicitudes de Reservación</h1>
-                <button>Generar reporte</button>
+                <button @click="">Generar reporte</button>
             </div>
 
             <div class="Lab_Options">
-                <h3>Laboratorio asignado: {{Lab}}</h3>
+                <h3>Bienvenid@: {{userData.nombre}}</h3>
+                <h3 v-for="item in getLab" :key="item.id_laboratorio">Laboratorio asignado: {{item.nombre_laboratorio}}</h3>
                 <div class="Lab_Status">
-                <p>Estado:</p>
+                <p>Estado: </p>
                     <select>
                         <option>Se permiten solicitudes</option>
                         <option>No se permiten solicitudes</option>
@@ -42,101 +101,19 @@
             <div class="search-style">
                 <h2>Solicitudes Pendientes</h2>
                 <p>Buscar:</p>
-                <input type="text" placeholder="Nombre de docente">
+                <input v-model="search" type="text" placeholder="Nombre de docente">
             </div>
 
-            <table class="table_Reservaciones">
-                <thead>
-                    <tr>
-                        <th class="table_header1">
-                            <p>Genero la solicitud: Hector Fernando Gómez García {{Nombre_Profesor}}</p>
-                            <button>Generar vista previa</button>
-                        </th>
-                        <th class="table_header2">
-                            <strong>Razon:</strong>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus egestas, risus eget interdum viverra, metus nisi consequat urna, vitae maximus ipsum turpis quis ante. {{Motivo_Reservacion}}</p>
-                        </th>
-                        <th class="table_header3">
-                            <ul>
-                                <li>
-                                    <p>Fecha de solicitud: 10/10/2020{{Fecha_Reservacion}}</p>
-                                    <p>Cantidad por semanas: 3{{Semanas_Reservacion}}</p>
-                                    <p>Reservar por todo el semestre: Si{{Semestre_Reservar}}</p>
-                                </li>
-                            </ul>
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <td>Dia: {{Dia_Rerservacion}}</td>
-                    <td>Hora de inicio: {{Hora_Inicio}}</td>
-                    <td>Hora de fin: {{Hora_Fin}}</td>
-                </tbody>
-                <tbody>
-                    <td>Dia: {{Dia_Rerservacion}}</td>
-                    <td>Hora de inicio: {{Hora_Inicio}}</td>
-                    <td>Hora de fin: {{Hora_Fin}}</td>
-                </tbody>
-                <tbody>
-                    <td>Dia: {{Dia_Rerservacion}}</td>
-                    <td>Hora de inicio: {{Hora_Inicio}}</td>
-                    <td>Hora de fin: {{Hora_Fin}}</td>
-                </tbody>
-                <div class="buttons">
-                    <button class="green_button">Aprobar todo</button>
-                    <button class="red_button">Rechazar todo</button>
-                </div>
-            </table>
+            <Table :reservations = reservations :reservationStatus = 2 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 0 />
 
             <div class="search-style">
                 <h2>Reservaciones activas</h2>
                 <p>Buscar:</p>
-                <input type="text" placeholder="Nombre de docente">
+                <input v-model="search" type="text" placeholder="Nombre de docente">
             </div>
             
-            <table class="table_Reservaciones">
-                <thead>
-                    <tr>
-                        <th class="table_header1">
-                            <p>Genero la solicitud: {{Nombre_Profesor}}</p>
-                            <button>Generar vista previa</button>
-                        </th>
-                        <th class="table_header2">
-                            <p>Razón:</p>
-                            <p>{{Motivo_Reservacion}}</p>
-                        </th>
-                        <th class="table_header3">
-                            <ul>
-                                <li>
-                                    <p>Fecha de solicitud: {{Fecha_Reservacion}}</p>
-                                    <p>Cantidad por semanas: {{Semanas_Reservacion}}</p>
-                                    <p>Reservar por todo el semestre: {{Semestre_Reservar}}</p>
-                                </li>
-                            </ul>
-                        </th>
-                    </tr>
-                </thead>
+            <Table :reservations = reservations :reservationStatus = 1 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 1 />
 
-                <tbody>
-                    <td>Dia: {{Dia_Rerservacion}}</td>
-                    <td>Hora de inicio: {{Hora_Inicio}}</td>
-                    <td>Hora de fin: {{Hora_Fin}}</td>
-                </tbody>
-                <tbody>
-                    <td>Dia: {{Dia_Rerservacion}}</td>
-                    <td>Hora de inicio: {{Hora_Inicio}}</td>
-                    <td>Hora de fin: {{Hora_Fin}}</td>
-                </tbody>
-                <tbody>
-                    <td>Dia: {{Dia_Rerservacion}}</td>
-                    <td>Hora de inicio: {{Hora_Inicio}}</td>
-                    <td>Hora de fin: {{Hora_Fin}}</td>
-                </tbody>
-                <div class="buttons">
-                    <button class="cancel_button">Cancelar reservacion</button>
-                </div>
-            </table>
         </div>
     </div>
 </template>
