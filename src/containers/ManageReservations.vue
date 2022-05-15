@@ -48,7 +48,8 @@
         -cancelReservation
         -getReservations
     */
-   import moment from 'moment'
+    import moment from 'moment'
+    import Table from '../components/Table.vue'
    
     export default{
         data(){
@@ -73,6 +74,9 @@
         mounted() {
             this.getReservations(this.id_lab, -1)
             this.getLabs()
+        },
+        components: {
+            Table
         },
         methods: {
             moment
@@ -107,41 +111,7 @@
                 <input v-model="search" type="text" placeholder="Nombre de docente">
             </div>
 
-            <div v-for="reservation in reservations" class="table_container">
-                <table v-if="reservation.datosReservacion.estado === 2" class="table_Reservaciones">
-                    <thead>
-                        <tr>
-                            <th class="table_header1">
-                                <p>Genero la solicitud: {{reservation.datosReservacion.nombreSolicitante + " " + reservation.datosReservacion.apellidoSolicitante + reservation.datosReservacion.idReservacion}}</p>
-                                <button>Generar vista previa</button>
-                            </th>
-                            <th class="table_header2">
-                                <strong>Razon:</strong>
-                                <p>{{reservation.datosReservacion.razonSolicitud}}</p>
-                            </th>
-                            <th class="table_header3">
-                                <ul>
-                                    <li>
-                                        <p>Fecha de solicitud: {{moment(reservation.datosReservacion.fechaPeticion).format('DD-MM-YYYY')}}</p>
-                                        <p>Cantidad por semanas: {{}}</p>
-                                        <p>Reservar por todo el semestre: {{reservation.datosReservacion.estado}}</p>
-                                    </li>
-                                </ul>
-                            </th>
-                        </tr>
-                    </thead>
-
-                    <tbody v-for="hours in reservation.horas">
-                        <td>Dia: {{moment(hours.start).format('dddd')}}</td>
-                        <td>Hora de inicio: {{moment(hours.start).format('LT')}}</td>
-                        <td>Hora de fin: {{moment(hours.end).format('LT')}}</td>
-                    </tbody>
-                    <div class="buttons">
-                        <button class="green_button" @click="">Aprobar todo</button>
-                        <button class="red_button" @click="">Rechazar todo</button>
-                    </div>
-                </table>
-            </div>
+            <Table :reservations = reservations :reservationStatus = 2 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 0 />
 
             <div class="search-style">
                 <h2>Reservaciones activas</h2>
@@ -149,40 +119,8 @@
                 <input v-model="search" type="text" placeholder="Nombre de docente">
             </div>
             
-            <div v-for="reservation in reservations" class="table_container">
-                <table v-if="reservation.datosReservacion.estado === 1" class="table_Reservaciones">
-                    <thead>
-                        <tr>
-                            <th class="table_header1">
-                                <p>Genero la solicitud: {{reservation.datosReservacion.nombreSolicitante + " " + reservation.datosReservacion.apellidoSolicitante + reservation.datosReservacion.idReservacion}}</p>
-                                <button>Generar vista previa</button>
-                            </th>
-                            <th class="table_header2">
-                                <strong>Razon:</strong>
-                                <p>{{reservation.datosReservacion.razonSolicitud}}</p>
-                            </th>
-                            <th class="table_header3">
-                                <ul>
-                                    <li>
-                                        <p>Fecha de solicitud: {{moment(reservation.datosReservacion.fechaPeticion).format('DD-MM-YYYY')}}</p>
-                                        <p>Cantidad por semanas: {{}}</p>
-                                        <p>Reservar por todo el semestre: {{reservation.datosReservacion.estado}}</p>
-                                    </li>
-                                </ul>
-                            </th>
-                        </tr>
-                    </thead>
+            <Table :reservations = reservations :reservationStatus = 1 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 1 />
 
-                    <tbody v-for="hours in reservation.horas">
-                        <td>Dia: {{moment(hours.start).format('dddd')}}</td>
-                        <td>Hora de inicio: {{moment(hours.start).format('LT')}}</td>
-                        <td>Hora de fin: {{moment(hours.end).format('LT')}}</td>
-                    </tbody>
-                    <div class="buttons">
-                        <button class="cancel_button" @click="">Cancelar reservacion</button>
-                    </div>
-                </table>
-            </div>
         </div>
     </div>
 </template>

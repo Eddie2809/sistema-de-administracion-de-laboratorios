@@ -5,6 +5,7 @@
     import ManageReservations from './ManageReservations.vue'
     import Navbar from '../components/Navbar.vue'
     import Footer from '../components/Footer.vue'
+    import Table from '../components/Table.vue'
     import MyReservations from './MyReservations.vue'
     import ReservationRequest from './ReservationRequest.vue'
     import AdminTools from './AdminTools.vue'
@@ -33,6 +34,7 @@
             ManageReservations,
             Navbar,
             Footer,
+            Table,
             AdminTools
         },
         methods: {
