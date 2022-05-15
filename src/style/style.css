@@ -475,7 +475,6 @@ footer a u {
   margin-bottom: 1.5vh;
 }
 
-<<<<<<< HEAD
 .inicio {
   position: relative;
   width: 1343px;
@@ -642,10 +641,7 @@ footer a u {
   color: #FFFFFF;
 }
 
-.body-style {
-=======
 .ManageReservations .body-style {
->>>>>>> 152211b15990583b258e9a8b2491130ce24f0e82
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -813,103 +809,8 @@ footer a u {
   width: 373px;
   height: 29px;
 }
-<<<<<<< HEAD
 
-.table_Reservaciones {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  width: 1226px;
-  height: 367px;
-  border: 1px solid #000000;
-  border-radius: 30px;
-  background-color: #2C3E50;
-  margin-bottom: 3vw;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-.table_Reservaciones > thead {
-  width: 1226px;
-  height: 120px;
-  margin-left: 1vw;
-  color: white;
-  text-align: left;
-  vertical-align: text-top;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.table_header1 > p {
-  color: white;
-  margin-left: 40px;
-  margin-bottom: 30px;
-  margin-top: 20px;
-}
-
-.table_header1 > button {
-  width: 151px;
-  height: 31px;
-  background: #DE0069;
-  color: white;
-  border-radius: 3px;
-  border: none;
-  margin-left: 40px;
-}
-
-.table_header2 > strong {
-  color: white;
-  margin-left: 47px;
-  margin-right: 180px;
-  margin-top: 20px;
-}
-
-.table_header2 > p {
-  color: white;
-  margin-left: 47px;
-  width: 431px;
-  height: 57px;
-  font-weight: 1;
-  line-height: 19px;
-  text-align: justify;
-}
-
-.table_header3 > ul > li > p {
-  color: white;
-  margin-bottom: 10px;
-  margin-top: 20px;
-}
-
-.table_Reservaciones > tbody {
-  width: 1224px;
-  height: 56px;
-  background-color: white;
-  border: none;
-  text-align: center;
-}
-
-.table_Reservaciones > tbody:hover {
-  background: #DBEFFF;
-}
-
-.table_Reservaciones > tbody > td {
-  border: none;
-}
-
-.buttons {
-  text-align: center;
-}
-
-.cancel_button {
-  width: 193px;
-  height: 30px;
-  background: #EB2424;
-  border-radius: 15px;
-  border: none;
-  color: white;
-}
-
-h1 {
+.AdminTools h1 {
   position: absolute;
   width: 319px;
   height: 29px;
@@ -923,7 +824,7 @@ h1 {
   color: #3D3D3D;
 }
 
-#lab {
+.AdminTools #lab {
   position: absolute;
   width: 86px;
   height: 13px;
@@ -939,7 +840,7 @@ h1 {
   color: #3D3D3D;
 }
 
-#doc {
+.AdminTools #doc {
   position: absolute;
   width: 64px;
   height: 12px;
@@ -955,7 +856,7 @@ h1 {
   color: #3D3D3D;
 }
 
-#res {
+.AdminTools #res {
   position: absolute;
   width: 96px;
   height: 13px;
@@ -971,7 +872,7 @@ h1 {
   color: #3D3D3D;
 }
 
-h2 {
+.AdminTools h2 {
   position: absolute;
   width: 96px;
   height: 29px;
@@ -985,13 +886,13 @@ h2 {
   color: #3D3D3D;
 }
 
-#aggdoc {
+.AdminTools #aggdoc {
   position: absolute;
   left: 350px;
   top: 168px;
 }
 
-#agg {
+.AdminTools #agg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1017,7 +918,7 @@ h2 {
   border-radius: 5px;
 }
 
-#buscar {
+.AdminTools #buscar {
   position: absolute;
   width: 52px;
   height: 19px;
@@ -1031,7 +932,7 @@ h2 {
   color: #3D3D3D;
 }
 
-#write {
+.AdminTools #write {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   position: absolute;
@@ -1045,7 +946,7 @@ h2 {
   padding: 3px;
 }
 
-table {
+.AdminTools table {
   position: absolute;
   left: 243px;
   top: 262px;
@@ -1053,12 +954,12 @@ table {
   width: 75%;
 }
 
-td, th {
+.AdminTools td, .AdminTools th {
   text-align: left;
   padding: 8px;
 }
 
-th {
+.AdminTools th {
   font-family: 'Rosario';
   font-style: normal;
   font-weight: 700;
@@ -1067,7 +968,7 @@ th {
   color: #3D3D3D;
 }
 
-td {
+.AdminTools td {
   font-family: 'Rosario';
   font-style: normal;
   font-weight: 400;
@@ -1076,7 +977,7 @@ td {
   color: #3D3D3D;
 }
 
-.modificar {
+.AdminTools .modificar {
   color: #FFFFFF;
   text-decoration: none;
   -webkit-box-pack: center;
@@ -1091,7 +992,7 @@ td {
   border-radius: 5px;
 }
 
-.eliminar {
+.AdminTools .eliminar {
   color: #FFFFFF;
   text-decoration: none;
   -webkit-box-pack: center;
@@ -1105,6 +1006,4 @@ td {
   background: #EB2424;
   border-radius: 5px;
 }
-=======
->>>>>>> 152211b15990583b258e9a8b2491130ce24f0e82
 /*# sourceMappingURL=style.css.map */
