@@ -92,7 +92,8 @@
                     userId: userId
                 })
                 .then(reservations => {
-                    this.events = reservations
+                    console.log(reservations)
+                    this.reservations = reservations
                 })
                 .catch(err => alert('Algo salio mal'))
             },
@@ -200,6 +201,7 @@
             // Asigna la lista de laboratorios con sus respectivos encargados a this.labsList
             getLabs(){
                 this.fetchGet('get-labs').then(res => {
+                    console.log(res)
                     this.labsList = res
                 })
             },
@@ -271,8 +273,8 @@
         <AdminTools v-if="this.route === 'admintools'"/>
         <Home v-if="this.route === 'home'" :getLabs="getLabs" :getEvents="getEvents" :labsList="this.labsList" :events="events"/>
         <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList" />
-        <ManageReservations v-if="this.route === 'managereservations'"/>
-        <MyReservations v-if="this.route === 'myreservations'"/>
+        <ManageReservations v-if="this.route === 'managereservations'"  :getLabs="getLabs" :userData="this.userData" :reservations="this.reservations" :labsList="this.labsList" :getReservations="getReservations"/>
+        <MyReservations v-if="this.route === 'myreservations'"  :userData="this.userData" :reservations="this.reservations" :getReservations="getReservations"/>
         <ReservationRequest v-if="this.route === 'reservationrequest'"/>
         <Footer v-if="this.route !== 'login'"/>
     </div>
