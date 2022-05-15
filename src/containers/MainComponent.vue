@@ -154,6 +154,11 @@
                 .then(() => alert('Hecho'))
             },
 
+            onadd(e){
+                e.preventDefoult()
+                alert('funciona')
+            },
+
             // Evalua si el username y la password son correctas, si lo son cambia de ruta y recupera la infor-
             // mación
             evaluateCredentials(username,password){
