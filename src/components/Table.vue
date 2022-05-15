@@ -21,14 +21,31 @@
     <Table :reservations = reservations :reservationStatus = 1 :tableHeaderType = 2 :tableBodyType = 1 :tableButtonType = 1 />
     */
     import moment from 'moment'
+    import Modal from '../components/Modal.vue'
 
     export default{
         data (){
-
+            return {
+                isModalVisible: false,
+            };
+        },
+        computed: {
+            getWeeks(date){
+                return moment(date.start).diff(moment(date.end), 'days');
+            }
         },
         props:['reservations', 'reservationStatus', 'tableHeaderType', 'tableBodyType', 'tableButtonType'],
         methods: {
-            moment
+            moment,
+            showModal() {
+                this.isModalVisible = true;
+            },
+            closeModal() {
+                this.isModalVisible = false;
+            }
+        },
+        components: {
+            Modal
         }
     }
 </script>
@@ -50,7 +67,7 @@
                         <ul>
                             <li>
                                 <p>Fecha de solicitud: {{moment(reservation.datosReservacion.fechaPeticion).format('DD-MM-YYYY')}}</p>
-                                <p>Cantidad por semanas: {{}}</p>
+                                <p>Cantidad por semanas: {{ moment(reservation.horas[0].end).diff(moment(reservation.horas[0].start), 'weeks') }}</p>
                                 <p>Reservar por todo el semestre: {{reservation.datosReservacion.estado}}</p>
                             </li>
                         </ul>
@@ -91,10 +108,20 @@
             </tbody>
             
             <div v-if="tableButtonType != null" class="buttons">
-                <button v-if="tableButtonType == 0" class="green_button" @click="">Aprobar todo</button>
-                <button v-if="tableButtonType == 0" class="red_button" @click="">Rechazar todo</button>
-                <button v-if="tableButtonType == 1" class="cancel_button" @click="">Cancelar reservacion</button>
+                <button v-if="tableButtonType == 0" class="green_button" @click="showModal">Aprobar todo</button>
+                <button v-if="tableButtonType == 0" class="red_button" @click="showModal">Rechazar todo</button>
+                <button v-if="tableButtonType == 1" class="cancel_button" @click="showModal">Cancelar reservacion</button>
             </div>
         </table>
+        
+        <Modal v-show="isModalVisible"  @close="closeModal">
+            <template v-slot:header> ¿Estas seguro que quieres rechazar esta solicitud? </template>
+            <template v-slot:body>
+                <p>Solicitante: {{reservation.datosReservacion.nombreSolicitante + " " + reservation.datosReservacion.apellidoSolicitante}}</p>
+                <p>Fecha de solicitud: {{moment(reservation.datosReservacion.fechaPeticion).format('DD-MM-YYYY')}}</p>
+                <p>Razon: {{reservation.datosReservacion.razonSolicitud}}</p>
+                <textarea placeholder="Escribe una razon"></textarea>
+            </template>
+        </Modal>
     </div>
 </template>

@@ -10,17 +10,11 @@
         Funciones útiles:
         -getReservations
     */
-   import moment from 'moment'
    import Table from '../components/Table.vue'
    
     export default{
         data(){
             return{
-
-            }
-        },
-        computed: {
-            getWeeks(hours){
 
             }
         },
@@ -30,9 +24,6 @@
         },
         components: {
             Table
-        },
-        methods: {
-            moment
         }
     }
 </script>

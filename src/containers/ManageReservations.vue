@@ -34,10 +34,10 @@
         Asignado a: Bryan
 
         Notas: 
-        -Abrir ventana de confirmación para cancelar reservación
-        -Abrir ventana para escribir motivo de rechazo al rechazar una reservación
-        -La vista previa es para que el encargado vea como quedaría el horario si aceptara esa reservación
-        -En 'Estado' puedes permitir o rechazar las solicitudes de reservación
+        -Abrir ventana de confirmación para cancelar reservación (1/2)
+        -Abrir ventana para escribir motivo de rechazo al rechazar una reservación (1/2)
+        -La vista previa es para que el encargado vea como quedaría el horario si aceptara esa reservación  (X)
+        -En 'Estado' puedes permitir o rechazar las solicitudes de reservación (1/2)
         -Reservaciones activas son aquellas con estado 1
         -Reservaciones inactivas son aquellas con estado 0
         -Esta pendiente la función para obtener las reservaciones :(
@@ -48,7 +48,6 @@
         -cancelReservation
         -getReservations
     */
-    import moment from 'moment'
     import Table from '../components/Table.vue'
    
     export default{
@@ -65,9 +64,6 @@
                         return i.id_encargado;
                     }
                 });
-            },
-            getWeeks(hours){
-
             }
         },
         props: ['getReservations', 'userData', 'labsList', 'reservations', 'getLabs'],
@@ -77,9 +73,6 @@
         },
         components: {
             Table
-        },
-        methods: {
-            moment
         }
     }
 </script>
@@ -87,7 +80,7 @@
 <template>
     <div class="container ManageReservations">
         <div class="body-style">
-            <div class="Titulo">
+            <div class="title">
                 <h1>Solicitudes de Reservación</h1>
                 <button @click="">Generar reporte</button>
             </div>
