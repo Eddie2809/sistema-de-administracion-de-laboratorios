@@ -55,14 +55,19 @@
                 <td>Hector Fernando Gomez Garcia</td>
                 <td>fgom@ucaribe.edu.mx</td>
                 <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-                <!--<td><a @click="this.modify" class="modificar" href="#">Modificar</a> <a @click="this.eliminates" class="eliminar" href="#">Eliminar</a></td> -->
+                <td>
+                    <button @click="this.modify" class="modificar">Modificar</button> 
+                    <button @click="this.eliminates" class="eliminar">Eliminar</button>
+                </td>
             </tr>
             <tr>
                 <td>Hector Fernando Gomez Garcia</td>
                 <td>fgom@ucaribe.edu.mx</td>
                 <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
+                <td>
+                    <button @click="this.modify" class="modificar">Modificar</button> 
+                    <button @click="this.eliminates" class="eliminar">Eliminar</button>
+                </td>
             </tr>
             <tr>
                 <td>Hector Fernando Gomez Garcia</td>

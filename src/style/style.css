@@ -815,7 +815,7 @@ footer a u {
   display: grid;
   -ms-grid-columns: 10% 90%;
       grid-template-columns: 10% 90%;
-  margin-top: 8vh;
+  margin-top: 4vh;
 }
 
 .AdminTools .side-menu {
@@ -829,7 +829,7 @@ footer a u {
 }
 
 .AdminTools .side-menu > a {
-  margin-bottom: 6vh;
+  margin-bottom: 3vh;
 }
 
 .AdminTools #aggdoc {
@@ -853,7 +853,7 @@ footer a u {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
-  margin-top: 21px;
+  margin-top: 15px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -870,11 +870,8 @@ footer a u {
 }
 
 .AdminTools table {
-  position: absolute;
-  left: 243px;
-  top: 262px;
-  border-collapse: collapse;
-  width: 75%;
+  margin-top: 17px;
+  width: 90%;
 }
 
 .AdminTools td, .AdminTools th {
@@ -883,32 +880,13 @@ footer a u {
 }
 
 .AdminTools th {
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 20px;
-  line-height: 24px;
-  color: #3D3D3D;
-}
-
-.AdminTools td {
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
+  font-weight: 900;
+  font-size: 1.25rem;
   color: #3D3D3D;
 }
 
 .AdminTools .modificar {
   color: #FFFFFF;
-  text-decoration: none;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   width: 81px;
   height: 27px;
   background: #FFB800;
@@ -917,16 +895,17 @@ footer a u {
 
 .AdminTools .eliminar {
   color: #FFFFFF;
-  text-decoration: none;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   width: 81px;
   height: 27px;
   background: #EB2424;
+  border-radius: 5px;
+}
+
+.AdminTools .asignar {
+  color: #FFFFFF;
+  width: 160px;
+  height: 27px;
+  background: #1979C6;
   border-radius: 5px;
 }
 /*# sourceMappingURL=style.css.map */

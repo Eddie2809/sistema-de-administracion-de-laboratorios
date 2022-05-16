@@ -28,7 +28,7 @@
 
 <template>
     <div> 
-        <h2>Laboratorios</h2>
+        <h2 class="subtitle">Laboratorios</h2>
 
         <form action="" id="aggdoc">
             <input type="text" name="name" class="name" placeholder="Nombre" v-model="name">
@@ -36,39 +36,31 @@
             <input type="text" name="email" class="email" placeholder="E-mail" v-model="email">
             <input type="text" name="usertype" class="usertype" placeholder="Tipo de usuario" v-model="usertype">
         </form>
-        
-        <a @click="this.addNewUser(this.name,this.lastname,this.email.this.usertype)" id="agg" href="#">Agregar docente</a>
-        <p id="buscar">Buscar:</p>
-        <form action="">
-            <input type="text" name="write" id="write" placeholder="Por nombre, correo o tipo de usuario" v-model="username">
-        </form>
+        <div class="add-search">
+            <button @click="this.addNewUser(this.name,this.lastname,this.email.this.usertype)" id="agg" href="#">Agregar laboratorio</button>
+            <p>Buscar:</p>
+            <input type="text" id="write" placeholder="Por nombre, encargado o correo" v-model="username">
 
+        </div>
+        
         <table>
             <tr>
                 <th>Nombre</th>
+                <th>Encargado</th>
                 <th>Correo</th>
-                <th>Tipo de usuario</th>
                 <th>Opciones</th>
             </tr>
             <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-                <!--<td><a @click="this.modify" class="modificar" href="#">Modificar</a> <a @click="this.eliminates" class="eliminar" href="#">Eliminar</a></td> -->
+                <td>Laboratorio de ingenieria</td>
+                <td>Yarely Baez Lopez</td>
+                <td>ybaez@ucaribe.edu.mx</td>
+                <td>
+                    <button @click="this.eliminates" class="asignar">Asignar encargado</button>
+                    <button @click="this.modify" class="modificar">Modificar</button> 
+                    <button @click="this.eliminates" class="eliminar">Eliminar</button>
+                </td>
             </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-            </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-            </tr>
+            
         </table>
     </div>
     
