@@ -61,7 +61,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Hector Fernando Gomez Garcia</td>
+                <td>Hector Fernando Gomez Garcia </td>
                 <td>fgom@ucaribe.edu.mx</td>
                 <td>Docente</td>
                 <td>

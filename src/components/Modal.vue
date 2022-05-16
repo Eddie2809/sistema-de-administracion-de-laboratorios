@@ -26,7 +26,9 @@
         </section>
 
         <footer class="modal-footer">
-          <button type="button_accept" class="btn-green" @click="close" aria-label="Close modal"> Aceptar </button>
+          <slot name="footer">
+            <button type="button_accept" class="btn-green" @click="close" aria-label="Close modal"> Aceptar </button>
+          </slot>
           <button type="button_deny" class="btn-red" @click="close" aria-label="Close modal"> Cancelar </button>
         </footer>
       </div>

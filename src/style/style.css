@@ -347,11 +347,11 @@ footer a u {
 
 .modal-body {
   position: relative;
-  padding: 20px 10px;
+  padding: 20px 20px;
   font-size: 1.25rem;
 }
 
-.modal-body p {
+.modal-body div {
   padding-bottom: 1rem;
 }
 
@@ -840,9 +840,9 @@ footer a u {
 
 .AdminTools #agg {
   color: #FFFFFF;
-  padding: 4px;
+  padding: 4px 10px;
   background: #1979C6;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 .AdminTools .add-search {

@@ -277,11 +277,11 @@
     <div class="MainComponent">
         <Navbar v-if="this.route !== 'login'" :changeRoute="changeRoute" :userType="userData.tipo" :route="this.route" :logOut="logOut"/> 
         <Login v-if="this.route === 'login'" :changeRoute="changeRoute" :evaluateCredentials="evaluateCredentials"/>
-        <AdminTools v-if="this.route === 'admintools'"/>
+        <AdminTools v-if="this.route === 'admintools'" :getLabs="getLabs" :lablist="this.labsList" :getUsers="getUsers" :userlist="this.usersList" :assignLabManager="assignLabManager" :deleteLab="deleteLab" :modifyLab="modifyLab" :addNewLab="addNewLab"/>
         <Home v-if="this.route === 'home'" :getLabs="getLabs" :getEvents="getEvents" :labsList="this.labsList" :events="events"/>
-        <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList" />
-        <ManageReservations v-if="this.route === 'managereservations'"  :getLabs="getLabs" :userData="this.userData" :reservations="this.reservations" :labsList="this.labsList" :getReservations="getReservations"/>
-        <MyReservations v-if="this.route === 'myreservations'"  :userData="this.userData" :reservations="this.reservations" :getReservations="getReservations"/>
+        <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList"/>
+        <ManageReservations v-if="this.route === 'managereservations'" :getLabs="getLabs" :userData="this.userData" :reservations="this.reservations" :labsList="this.labsList" :getReservations="getReservations"/>
+        <MyReservations v-if="this.route === 'myreservations'" :userData="this.userData" :reservations="this.reservations" :getReservations="getReservations"/>
         <ReservationRequest v-if="this.route === 'reservationrequest'"/>
         <Footer v-if="this.route !== 'login'"/>
     </div>

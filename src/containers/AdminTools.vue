@@ -29,23 +29,25 @@ import { Component } from "preact"
     import ToolsLabs from './ToolsLabs.vue'
     import ToolsReservation from './ToolsReservation.vue'
 
-    export default({
-        data(){
-            return{
-                adminOption: "docentes"
-            }
-        },
-        methods: {
-            changeOption(newOption) {
-                this.adminOption = newOption
-            }
-        },
-        components: {
-            ToolsDocente,
-            ToolsLabs,
-            ToolsReservation
+export default {
+    data(){
+        return{
+            adminOption: "docentes"
         }
-    })
+    },
+    methods: {
+        changeOption(newOption) {
+            this.adminOption = newOption
+        }
+    },
+    components: {
+        ToolsDocente,
+        ToolsLabs,
+        ToolsReservation
+    },
+    props: ["lablist", "userlist", "getUsers", "getLabs", "assignLabManager", "deleteLab", "modifyLab", "addNewLab"]
+    
+}
 </script>
 
 <template>
@@ -59,7 +61,7 @@ import { Component } from "preact"
             </div>
             
             <ToolsDocente v-if="this.adminOption === 'docentes'"/>
-            <ToolsLabs v-if="this.adminOption === 'laboratorios'"/>
+            <ToolsLabs v-if="this.adminOption === 'laboratorios'" :lablist="this.lablist" :getLabs="getLabs" :assignLabManager="assignLabManager" :deleteLab="deleteLab" :modifyLab="modifyLab" :addNewLab="addNewLab"/>
             <ToolsReservation v-if="this.adminOption === 'reservacion'"/>
 
         </div>
