@@ -810,80 +810,35 @@ footer a u {
   height: 29px;
 }
 
+.AdminTools .menu-content {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 10% 90%;
+      grid-template-columns: 10% 90%;
+}
+
 .AdminTools h1 {
-  position: absolute;
-  width: 319px;
-  height: 29px;
-  left: 70px;
-  top: 109px;
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-  color: #3D3D3D;
+  font-size: 1.5rem;
 }
 
-.AdminTools #lab {
-  position: absolute;
-  width: 86px;
-  height: 13px;
-  left: 70px;
-  top: 168px;
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
-  color: #3D3D3D;
+.AdminTools .side-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 4vh;
 }
 
-.AdminTools #doc {
-  position: absolute;
-  width: 64px;
-  height: 12px;
-  left: 70px;
-  top: 201px;
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
-  color: #3D3D3D;
-}
-
-.AdminTools #res {
-  position: absolute;
-  width: 96px;
-  height: 13px;
-  left: 70px;
-  top: 233px;
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
-  color: #3D3D3D;
+.AdminTools .side-menu > a {
+  margin: 1vh;
 }
 
 .AdminTools h2 {
-  position: absolute;
-  width: 96px;
-  height: 29px;
-  left: 243px;
-  top: 168px;
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
-  color: #3D3D3D;
+  font-size: 1.25rem;
+  margin-top: 4vh;
 }
 
 .AdminTools #aggdoc {

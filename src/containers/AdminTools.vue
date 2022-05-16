@@ -1,4 +1,6 @@
 <script>
+import { Component } from "preact"
+
 /* 
     Asignado a: Eduardo y Erick
 
@@ -23,55 +25,44 @@
     -getEvents (Para generar vista previa)
     -getReservations
 */
+    import ToolsDocente from './ToolsDocente.vue'
+    import ToolsLabs from './ToolsLabs.vue'
+    import ToolsReservation from './ToolsReservation.vue'
+
+    export default({
+        data(){
+            return{
+                adminOption: "docentes"
+            }
+        },
+        methods: {
+            changeOption(newOption) {
+                this.adminOption = newOption
+            }
+        },
+        components: {
+            ToolsDocente,
+            ToolsLabs,
+            ToolsReservation
+        }
+    })
 </script>
 
 <template>
     <div class="container AdminTools">
         <h1>Herramientas de administrador</h1>
-        <a id="lab" href="#">Laboratorios</a>
-        <a id="doc" href="#">Docentes</a>
-        <a id="res" href="#">Reservaciones</a>
-        <h2>Docentes</h2>
+        <div class="menu-content">
+            <div class="side-menu"> 
+                <a @click="changeOption('laboratorios')" href="#">Laboratorios</a>
+                <a @click="changeOption('docentes')" href="#">Docentes</a>
+                <a @click="changeOption('reservacion')" href="#">Reservaciones</a>
+            </div>
+            
+            <ToolsDocente v-if="this.adminOption === 'docentes'"/>
+            <ToolsLabs v-if="this.adminOption === 'laboratorios'"/>
+            <ToolsReservation v-if="this.adminOption === 'reservacion'"/>
 
-        <form action="" id="aggdoc">
-            <input type="text" name="name" class="name" placeholder="Nombre" v-model="name">
-            <input type="text" name="lastname" class="lastname" placeholder="Apellido" v-model="lastname">
-            <input type="text" name="email" class="email" placeholder="E-mail" v-model="email">
-            <input type="text" name="usertype" class="usertype" placeholder="Tipo de usuario" v-model="usertype">
-        </form>
+        </div>
         
-        <a @click="this.addNewUser(this.name,this.lastname,this.email.this.usertype)" id="agg" href="#">Agregar docente</a>
-        <p id="buscar">Buscar:</p>
-        <form action="">
-            <input type="text" name="write" id="write" placeholder="Por nombre, correo o tipo de usuario" v-model="username">
-        </form>
-
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Tipo de usuario</th>
-                <th>Opciones</th>
-            </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-                <!--<td><a @click="this.modify" class="modificar" href="#">Modificar</a> <a @click="this.eliminates" class="eliminar" href="#">Eliminar</a></td> -->
-            </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-            </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-            </tr>
-        </table>
     </div>
 </template>
