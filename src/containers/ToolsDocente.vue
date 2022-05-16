@@ -28,21 +28,22 @@
 
 <template>
     <div> 
-        <h2>Docentes</h2>
-
+        <h2 class="subtitle">Docentes</h2>
+<!--
         <form action="" id="aggdoc">
             <input type="text" name="name" class="name" placeholder="Nombre" v-model="name">
             <input type="text" name="lastname" class="lastname" placeholder="Apellido" v-model="lastname">
             <input type="text" name="email" class="email" placeholder="E-mail" v-model="email">
             <input type="text" name="usertype" class="usertype" placeholder="Tipo de usuario" v-model="usertype">
         </form>
-        
-        <a @click="this.addNewUser(this.name,this.lastname,this.email.this.usertype)" id="agg" href="#">Agregar docente</a>
-        <p id="buscar">Buscar:</p>
-        <form action="">
-            <input type="text" name="write" id="write" placeholder="Por nombre, correo o tipo de usuario" v-model="username">
-        </form>
+-->      
+        <div class="add-search">
+            <button @click="this.addNewUser(this.name,this.lastname,this.email.this.usertype)" id="agg" href="#">Agregar docente</button>
+            <p>Buscar:</p>
+            <input type="text" id="write" placeholder="Por nombre, correo o tipo de usuario" v-model="username">
 
+        </div>
+        
         <table>
             <tr>
                 <th>Nombre</th>

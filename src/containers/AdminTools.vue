@@ -50,7 +50,7 @@ import { Component } from "preact"
 
 <template>
     <div class="container AdminTools">
-        <h1>Herramientas de administrador</h1>
+        <h1 class="title">Herramientas de administrador</h1>
         <div class="menu-content">
             <div class="side-menu"> 
                 <a @click="changeOption('laboratorios')" href="#">Laboratorios</a>

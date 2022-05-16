@@ -815,10 +815,7 @@ footer a u {
   display: grid;
   -ms-grid-columns: 10% 90%;
       grid-template-columns: 10% 90%;
-}
-
-.AdminTools h1 {
-  font-size: 1.5rem;
+  margin-top: 8vh;
 }
 
 .AdminTools .side-menu {
@@ -829,16 +826,10 @@ footer a u {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-top: 4vh;
 }
 
 .AdminTools .side-menu > a {
-  margin: 1vh;
-}
-
-.AdminTools h2 {
-  font-size: 1.25rem;
-  margin-top: 4vh;
+  margin-bottom: 6vh;
 }
 
 .AdminTools #aggdoc {
@@ -848,57 +839,34 @@ footer a u {
 }
 
 .AdminTools #agg {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   color: #FFFFFF;
-  text-decoration: none;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  position: absolute;
-  width: 129px;
-  height: 27px;
-  left: 245px;
-  top: 218px;
+  padding: 4px;
   background: #1979C6;
   border-radius: 5px;
 }
 
-.AdminTools #buscar {
-  position: absolute;
-  width: 52px;
-  height: 19px;
-  left: 501px;
-  top: 223px;
-  font-family: 'Rosario';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #3D3D3D;
+.AdminTools .add-search {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  margin-top: 21px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.AdminTools #write {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  position: absolute;
-  width: 373px;
-  height: 29px;
-  left: 563px;
-  top: 218px;
-  background: #FFFFFF;
-  border: 1px solid #494949;
+.AdminTools .add-search > p {
+  margin-left: 127px;
+  margin-right: 10px;
+}
+
+.AdminTools .add-search > input {
   border-radius: 5px;
-  padding: 3px;
+  width: 25vw;
 }
 
 .AdminTools table {
