@@ -45,7 +45,7 @@ export default {
         ToolsLabs,
         ToolsReservation
     },
-    props: ["lablist", "userlist", "getUsers", "getLabs", "assignLabManager", "deleteLab", "modifyLab", "addNewLab", "addNewUser", "modifyUser", "deleteUser"]
+    props: ["lablist", "userlist", "getUsers", "getLabs", "assignLabManager", "deleteLab", "modifyLab", "addNewLab", "addNewUser", "modifyUser", "deleteUser", "changeLabStatus", "getEvents", "getReservations", "reservations", "userData"]
     
 }
 </script>
@@ -62,7 +62,7 @@ export default {
             
             <ToolsDocente v-if="this.adminOption === 'docentes'" :getUsers="getUsers" :userlist="this.userlist" :addNewUser="addNewUser" :modifyUser="modifyUser" :deleteUser="deleteUser"/>
             <ToolsLabs v-if="this.adminOption === 'laboratorios'" :lablist="this.lablist" :getLabs="getLabs" :assignLabManager="assignLabManager" :deleteLab="deleteLab" :modifyLab="modifyLab" :addNewLab="addNewLab"/>
-            <ToolsReservation v-if="this.adminOption === 'reservacion'"/>
+            <ToolsReservation v-if="this.adminOption === 'reservacion'" :changeLabStatus="changeLabStatus" :getEvents="getEvents" :getReservations="getReservations" :reservations="this.reservations" :userData="this.userData"/>
 
         </div>
         

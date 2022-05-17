@@ -74,10 +74,11 @@ export default {
 
 <template>
     <div> 
-        <h2 class="subtitle">Docentes</h2><div class="add-search">
+        <h2 class="subtitle">Docentes</h2>
+        <div class="add-search">
             <button @click="setModalVersion(1); showModal();" id="agg" href="#">Agregar docente</button>
             <p>Buscar:</p>
-            <input type="text" id="write" placeholder="Por nombre, correo o tipo de usuario" v-model="input">
+            <input type="text" placeholder="Por nombre, correo o tipo de usuario" v-model="input">
 
         </div>
 
