@@ -24,6 +24,7 @@ export default {
         return {
             input: '', //entrada de busqueda
             isModalVisible: false,
+            id_encargado: undefined,
             nombre: '', //nombre usado en "agregar laboratorio"
             nuevoEncargado: '', //ID del nuevo encargado usado en "asignar encargado"
             modalVersion: 0, //Variable para identificar que ventana emergente mostrar
@@ -144,8 +145,8 @@ export default {
             </tr>
             <tr v-for="item in filteredItems" :key="item.id_laboratorio">
                 <td>{{item.nombre_laboratorio}}</td>
-                <td>{{item.nombre_encargado + " " + item.apellido_encargado}}</td>
-                <td>{{item.correo_encargado}}</td>
+                <td>{{!item.nombre_encargado && !item.apellido_encargado? "Sin encargado asignado":item.nombre_encargado + " " + item.apellido_encargado}}</td>
+                <td>{{!item.correo_encargado? "Sin encargado asignado":item.correo_encargado}}</td>
                 <td>
                     <button @click="setModalVersion(2); setidLabCambio(item.id_laboratorio); showModal();" class="asignar">Asignar encargado</button>
                     <button @click="setModalVersion(3); setidLabCambio(item.id_laboratorio); showModal();" class="modificar">Modificar</button> 
