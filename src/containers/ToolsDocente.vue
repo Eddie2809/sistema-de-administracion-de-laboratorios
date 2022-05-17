@@ -15,7 +15,7 @@
     -getUsers
     -deleteUser
 */
-    import Modal from "../components/Modal.vue"
+import Modal from "../components/Modal.vue"
 export default {
     
     data() {
@@ -44,8 +44,8 @@ export default {
     },
     computed: {
         filteredItems() {
-            return this.userslist.filter((i) =>{
-                return i.nombre.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.correo.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.tipo.toLowerCase().indexOf(this.input.toLowerCase()) != -1 ;
+            return this.userlist.filter((i) =>{
+                return i.nombre.toLowerCase().indexOf(this.input.toLowerCase()) != -1; //|| i.correo.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.tipo.toLowerCase().indexOf(this.input.toLowerCase()) != -1 ;
             });
         }
     },
@@ -124,13 +124,13 @@ export default {
                 <th>Tipo de Usuario</th>
                 <th>Opciones</th>
             </tr>
-            <tr v-for="item in filteredItems" :key="item.id_laboratorio">
+            <tr v-for="item in filteredItems" :key="item.id_encargado">
                 <td>{{item.nombre}}</td>
                 <td>{{item.correo}}</td>
                 <td>{{item.tipo}}</td>
                 <td>
-                    <button @click="setModalVersion(2); setidLabCambio(item.id_laboratorio); showModal();" class="modificar">Modificar</button> 
-                    <button @click="setModalVersion(3); setidLabCambio(item.id_laboratorio); showModal()" class="eliminar">Eliminar</button>
+                    <button @click="setModalVersion(2); /*setidLabCambio(item.id_laboratorio);*/ showModal();" class="modificar">Modificar</button> 
+                    <button @click="setModalVersion(3); /*setidLabCambio(item.id_laboratorio);*/ showModal()" class="eliminar">Eliminar</button>
                 </td>
             </tr>
             
