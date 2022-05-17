@@ -21,7 +21,7 @@
         }
     })
 /* 
-    Asignado a: Rudygei    
+    Asignado a: Eddie    
 
     Funciones útiles:
     -getEvents

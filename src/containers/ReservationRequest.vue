@@ -43,7 +43,7 @@
     ]
 
     export default{
-    props: ["getLabs", "labsList","getEvents","events"],
+    props: ["getLabs", "labsList","getEvents","events","createNewReservation"],
     mounted() {
         this.getLabs()
     },
@@ -57,7 +57,6 @@
             days: [],
             hora: '',
             disabledWeeks: false,
-            hours: []
         })
     },
     watch: {
@@ -67,11 +66,11 @@
     },
     methods: {
         sendRequest(){
-            if(this.days.length === 0 && this.allSemester === false){
+            if(this.days.length === 0){
                 alert('Agrega al menos un día')
                 return
             }
-            if(this.weeks <= 0){
+            if(this.weeks <= 0 && this.allSemester === false){
                 alert('Número inválido de semanas')
                 return
             }
@@ -85,7 +84,7 @@
             let today = new Date()
             let upperBound,dayObj
             let daysObj = []
-            this.hours = []
+            let hours = []
             let weekCount,inicio,final
             let firstDayOfWeek = this.getFirstDayOfWeek()
 
@@ -114,19 +113,19 @@
                     if(!this.allSemester && weekCount >= this.weeks){
                         break
                     }
-                    this.hours.push({
+                    hours.push({
                         inicio: inicio,
                         final: final
                     })
                     weekCount++
-                    inicio = this.createDayObj(inicio,weekCount*7)
-                    final = this.createDayObj(final,weekCount*7)
+                    inicio = this.createDayObj(inicio,7)
+                    final = this.createDayObj(final,7)
                 }
             }
+
+            this.createNewReservation(this.reason,this.labId,hours)
         },
         createDayObj(dayObj,ndays){
-            console.log(ndays)
-            console.log(new Date(dayObj.getTime() + (1000 * 60 * 60 * 24 * ndays)))
             return new Date(dayObj.getTime() + (1000 * 60 * 60 * 24 * ndays))
         },
         getFirstDayOfWeek(){

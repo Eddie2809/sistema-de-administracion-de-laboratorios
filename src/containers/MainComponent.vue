@@ -78,7 +78,10 @@
                 })
                 .then(res => {
                     if(res !== 'Éxito') alert('Algo salió mal')
-                    else alert('Hecho!')
+                    else{
+                        alert(res)
+                        this.changeRoute('home')
+                    }
                 })
                 .catch(err => {
                     alert('Algo salió mal')
@@ -282,7 +285,7 @@
         <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList"/>
         <ManageReservations v-if="this.route === 'managereservations'" :getLabs="getLabs" :userData="this.userData" :reservations="this.reservations" :labsList="this.labsList" :getReservations="getReservations"/>
         <MyReservations v-if="this.route === 'myreservations'" :userData="this.userData" :reservations="this.reservations" :getReservations="getReservations"/>
-        <ReservationRequest v-if="this.route === 'reservationrequest'" :events="events" :getEvents="this.getEvents" :getLabs="getLabs" :labsList="this.labsList"/>
+        <ReservationRequest v-if="this.route === 'reservationrequest'" :createNewReservation="this.createNewReservation" :events="events" :getEvents="this.getEvents" :getLabs="getLabs" :labsList="this.labsList"/>
         <Footer v-if="this.route !== 'login'"/>
     </div>
 </template>
