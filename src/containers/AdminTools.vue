@@ -60,7 +60,7 @@ export default {
                 <a @click="changeOption('reservacion')" href="#">Reservaciones</a>
             </div>
             
-            <ToolsDocente v-if="this.adminOption === 'docentes'" :getUsers="getUsers" :userlist="this.userslist" :addNewUser="addNewUser" :modifyUser="modifyUser" :deleteUser="deleteUser"/>
+            <ToolsDocente v-if="this.adminOption === 'docentes'" :getUsers="getUsers" :userslist="this.userslist" :addNewUser="addNewUser" :modifyUser="modifyUser" :deleteUser="deleteUser"/>
             <ToolsLabs v-if="this.adminOption === 'laboratorios'" :lablist="this.lablist" :getLabs="getLabs" :assignLabManager="assignLabManager" :deleteLab="deleteLab" :modifyLab="modifyLab" :addNewLab="addNewLab"/>
             <ToolsReservation v-if="this.adminOption === 'reservacion'"/>
 

@@ -641,6 +641,225 @@ footer a u {
   color: #FFFFFF;
 }
 
+.ReservationRequest {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.ReservationRequest .title {
+  margin-bottom: 30px;
+}
+
+.ReservationRequest .reservationData {
+  background-color: #F0F8FF;
+  width: 100vw;
+  height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 70px 10px 70px;
+  -webkit-transform: translateX(-70px);
+          transform: translateX(-70px);
+  margin-bottom: 40px;
+}
+
+.ReservationRequest .reservationData .s1 {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ReservationRequest .reservationData .s1 .labInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReservationRequest .reservationData .s1 .labInput p {
+  margin-right: 20px;
+}
+
+.ReservationRequest .reservationData .s1 select {
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  width: 190px;
+}
+
+.ReservationRequest .reservationData .s2 {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.ReservationRequest .reservationData .s2 .weeksInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReservationRequest .reservationData .s2 .weeksInput p {
+  margin-right: 20px;
+}
+
+.ReservationRequest .reservationData .s2 .weeksInput input {
+  width: 50px;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 1px;
+}
+
+.ReservationRequest .reservationData .s2 .semesterInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReservationRequest .reservationData .s2 .semesterInput input {
+  margin-right: 20px;
+}
+
+.ReservationRequest .reservationData .s3 {
+  width: 40%;
+}
+
+.ReservationRequest .reservationData .s3 textarea {
+  width: 90%;
+  height: 40px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.ReservationRequest .subtext {
+  font-size: 0.75rem;
+}
+
+.ReservationRequest .newReservation {
+  width: 100vw;
+  height: 50px;
+  right: 0;
+  background-color: #DE0069;
+  -webkit-transform: translateX(-70px);
+          transform: translateX(-70px);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.ReservationRequest .newReservation svg {
+  margin-right: 5px;
+}
+
+.ReservationRequest .newReservation * {
+  color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.ReservationRequest .sendButton {
+  background-color: #2C3E50;
+  color: white;
+  width: 84px;
+  height: 30px;
+  border: none;
+  border-radius: 15px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+.ReservationRequest .sendButton:active {
+  width: 78px;
+  height: 27px;
+  border-radius: 13.5px;
+  margin-bottom: 18px;
+}
+
+.ReservationRequest .hours {
+  border: 2px solid #2C3E50;
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.ReservationRequest .hours .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60px;
+  border-bottom: 1px solid lightgray;
+}
+
+.ReservationRequest .hours .row svg {
+  background-color: #FF3D3D;
+  border-radius: 50%;
+  padding: 6px;
+  cursor: pointer;
+}
+
+.ReservationRequest .hours .row input, .ReservationRequest .hours .row select {
+  background-color: #2C3E50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 20px;
+}
+
+.ReservationRequest .hours .row input option, .ReservationRequest .hours .row select option {
+  color: white;
+}
+
+.ReservationRequest .hours .row div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.ReservationRequest .hours .row div p {
+  margin-right: 20px;
+}
+
 .ManageReservations .body-style {
   display: -webkit-box;
   display: -ms-flexbox;

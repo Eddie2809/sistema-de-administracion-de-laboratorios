@@ -22,7 +22,7 @@
                 events: [],
                 reservations: [],
                 reportData: [],
-                newUserData: {}
+                newUserData: {},
             }
         },
         components: {
@@ -35,7 +35,7 @@
             Navbar,
             Footer,
             Table,
-            AdminTools
+            AdminTools,
         },
         methods: {
 
@@ -56,7 +56,6 @@
                 }).then(res => res.json())
                 return resp
             },
-
             changeRoute(newRoute){
                 this.route = newRoute
             },
@@ -132,14 +131,15 @@
 
             // Asigna los eventos de un respectivo laboratorio a this.events
             getEvents(labId){
+                let idCon = 1
+                let events = []
                 this.fetchData('get-events',{labId}).then(res => {
-                    console.log(res)
-                    let events = []
                     res.forEach(ob => {
                         events.push({
                             start: ob.start.slice(0,19),
                             end: ob.end.slice(0,19),
                             title: ob.userName + ' ' + ob.userLastname,
+                            id: idCon++
                         })
                     })
                     this.events = events
@@ -208,7 +208,6 @@
             // Asigna la lista de laboratorios con sus respectivos encargados a this.labsList
             getLabs(){
                 this.fetchGet('get-labs').then(res => {
-                    console.log(res)
                     this.labsList = res
                 })
             },
@@ -282,7 +281,7 @@
         <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList"/>
         <ManageReservations v-if="this.route === 'managereservations'" :getLabs="getLabs" :userData="this.userData" :reservations="this.reservations" :labsList="this.labsList" :getReservations="getReservations"/>
         <MyReservations v-if="this.route === 'myreservations'" :userData="this.userData" :reservations="this.reservations" :getReservations="getReservations"/>
-        <ReservationRequest v-if="this.route === 'reservationrequest'"/>
+        <ReservationRequest v-if="this.route === 'reservationrequest'" :events="events" :getEvents="this.getEvents" :getLabs="getLabs" :labsList="this.labsList"/>
         <Footer v-if="this.route !== 'login'"/>
     </div>
 </template>

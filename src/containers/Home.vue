@@ -9,6 +9,16 @@
         components: {
             Calendar
         },
+        data(){
+            return({
+                labId: -1
+            })
+        },
+        watch: {
+            labId(){
+                this.getEvents(this.labId)
+            }
+        }
     })
 /* 
     Asignado a: Rudygei    
@@ -24,8 +34,8 @@
         <p class="subtitle">Ver horarios de laboratorio</p>
         <div class="labInput">
             <p>Laboratorio: </p>
-            <select>
-                <option value="none"></option>
+            <select v-model="labId">
+                <option value="-1">--Selecciona un laboratorio--</option>
                 <option v-for="labs in labsList" :key="labs.id_laboratorio" :value="labs.id_laboratorio">{{labs.nombre_laboratorio}}</option>
             </select>
         </div>

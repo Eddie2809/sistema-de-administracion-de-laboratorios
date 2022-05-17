@@ -30,7 +30,7 @@
     <p id="contra">Contraseña</p>
     <form action="">
         <input type="text" name="write1" id="write1" v-model="username">
-        <input type="text" name="write2" id="write2" v-model="password">
+        <input type="password" name="write2" id="write2" v-model="password">
     </form>
 
     <a @click="this.evaluateCredentials(this.username,this.password)" id="enviar" href="#">Enviar</a>

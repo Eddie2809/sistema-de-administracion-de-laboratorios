@@ -1,1 +1,143 @@
 // Hoja de estilos para "Hacer solicitud de reservacion"
+
+.ReservationRequest
+    display: flex
+    flex-direction: column
+
+    .title
+        margin-bottom: 30px
+    .reservationData
+        background-color: #F0F8FF
+        width: 100vw
+        height: 100px
+        display: flex
+        justify-content: center
+        padding: 10px 70px 10px 70px
+        transform: translateX(-70px)
+        margin-bottom: 40px
+
+        .s1
+            width: 30%
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+
+            .labInput
+                display: flex
+                
+                p
+                    margin-right: 20px
+            
+            select
+                background-color: white
+                border: 1px solid black
+                border-radius: 5px
+                width: 190px
+
+        .s2
+            width: 30%
+            display: flex
+            flex-direction: column
+            justify-content: space-between
+
+            .weeksInput
+                display: flex
+
+                p
+                    margin-right: 20px
+
+                input
+                    width: 50px
+                    border-radius: 5px
+                    border: 1px solid black
+                    padding: 1px
+
+            .semesterInput
+                display: flex
+
+                input
+                    margin-right: 20px
+
+        .s3
+            width: 40%
+
+            textarea
+                width: 90%
+                height: 40px
+                border: 1px solid black
+                border-radius: 5px
+                padding: 3px
+
+    .subtext
+        font-size: $tinytext
+
+    .newReservation
+        width: 100vw
+        height: 50px
+        right: 0
+        background-color: $pink
+        transform: translateX(-70px)
+        display: flex
+        justify-content: center
+        align-items: center
+        cursor: pointer
+        margin-bottom: 40px
+
+        svg
+            margin-right: 5px
+        
+        & *
+            color: white
+            user-select: none
+    
+    .sendButton
+        background-color: $darkblue
+        color: white
+        width: 84px
+        height: 30px
+        border: none
+        border-radius: 15px
+        align-self: center 
+        cursor: pointer
+        margin-bottom: 15px
+        
+        &:active
+            width: 78px
+            height: 27px
+            border-radius: 13.5px
+            margin-bottom: 18px
+
+    .hours
+        border: 2px solid $darkblue
+        border-radius: 10px 
+        margin-bottom: 40px 
+
+        .row
+            display: flex
+            justify-content: space-around
+            align-items: center
+            height: 60px 
+            border-bottom: 1px solid lightgray
+
+            svg
+                background-color: $red
+                border-radius: 50%
+                padding: 6px
+                cursor: pointer
+
+            input, select
+                background-color: $darkblue
+                color: white
+                border: none
+                border-radius: 5px
+                height: 20px
+
+                option
+                    color: white
+
+            div
+                display: flex
+
+                p
+                    margin-right: 20px
+
