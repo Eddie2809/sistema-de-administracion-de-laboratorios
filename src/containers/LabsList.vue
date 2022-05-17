@@ -44,8 +44,8 @@ export default {
 
             <div class="grid-lista" v-for="item in filteredItems" :key="item.id_laboratorio">
                 <p >{{item.nombre_laboratorio}}</p>
-                <p >{{item.nombre_encargado + " " + item.apellido_encargado}}</p>
-                <p >{{item.correo_encargado}}</p>
+                <p >{{!item.nombre_encargado && !item.apellido_encargado? "Sin encargado asignado":item.nombre_encargado + " " + item.apellido_encargado}}</p>
+                <p >{{!item.correo_encargado? "Sin encargado asignado": item.correo_encargado}}</p>
             </div>
         </div>
     </div>

@@ -215,6 +215,7 @@
             // Asigna a this.usersList la lista de los usuarios registrados en la base de datos.
             getUsers(){
                 this.fetchGet('get-users').then(res => {
+                    //console.log(res)
                     this.usersList = res
                 })
             },
