@@ -87,7 +87,7 @@ export default {
                 </div>
             </template>
             <template v-slot:footer>
-                <button id="agg" @click="addNewLab(this.nombre, this.id_encargado); closeModal();">Agregar</button>
+                <button id="agg" @click="addNewLab(this.nombre, this.id_encargado); closeModal(); getLabs();">Agregar</button>
             </template>
         </Modal>
 
@@ -102,7 +102,7 @@ export default {
                 </div>
             </template>
             <template v-slot:footer>
-                <button id="agg" @click="assignLabManager(this.idLabCambio, this.nuevoEncargado); closeModal();">Asignar</button>
+                <button id="agg" @click="assignLabManager(this.idLabCambio, this.nuevoEncargado); closeModal(); getLabs();">Asignar</button>
             </template>
         </Modal>
 
@@ -117,7 +117,7 @@ export default {
                 </div>
             </template>
             <template v-slot:footer>
-                <button id="agg" @click="modifyLab(this.idLabCambio, this.nuevoNombre, 1); closeModal();">Modificar</button>
+                <button id="agg" @click="modifyLab(this.idLabCambio, this.nuevoNombre, 1); closeModal(); getLabs();">Modificar</button>
             </template>
         </Modal>
 
@@ -131,7 +131,7 @@ export default {
                 </div>
             </template>
             <template v-slot:footer>
-                <button id="agg" @click="deleteLab(this.idLabCambio); closeModal();">Eliminar</button>
+                <button id="agg" @click="deleteLab(this.idLabCambio); closeModal(); getLabs();">Eliminar</button>
             </template>
         </Modal>
 

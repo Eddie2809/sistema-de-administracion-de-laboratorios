@@ -208,7 +208,7 @@
             // Asigna la lista de laboratorios con sus respectivos encargados a this.labsList
             getLabs(){
                 this.fetchGet('get-labs').then(res => {
-                    console.log(res)
+                    //console.log(res)
                     this.labsList = res
                 })
             },
@@ -216,6 +216,7 @@
             // Asigna a this.usersList la lista de los usuarios registrados en la base de datos.
             getUsers(){
                 this.fetchGet('get-users').then(res => {
+                    //console.log(res)
                     this.usersList = res
                 })
             },
