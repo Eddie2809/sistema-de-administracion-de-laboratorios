@@ -10,66 +10,48 @@
     -Cargar componentes de la barra de navegación izquierda dentro de este mismo componente
 
     Funciones útiles:
-    -getLabs
-    -assignLabManager
-    -deleteLab
-    -modifyLab
-    -addNewLab
-    -addNewUser
-    -modifyUser
-    -getUsers
-    -deleteUser
     -changeLabStatus (Para administrar solicitudes)
     -getEvents (Para generar vista previa)
     -getReservations
 */
-    
+import Table from "../components/Table.vue"
+
+
+export default{
+    data(){
+        return{
+            input: ''
+        }
+    },
+    components: {
+        Table
+    },
+    props: ["changeLabStatus", "getEvents", "getReservations", "reservations", "userData"],
+    mounted() {
+        this.getReservations(-1, this.userData.id)
+    }
+}
 </script>
 
 <template>
     <div> 
-        <h2>Reservaciones</h2>
-
-        <form action="" id="aggdoc">
-            <input type="text" name="name" class="name" placeholder="Nombre" v-model="name">
-            <input type="text" name="lastname" class="lastname" placeholder="Apellido" v-model="lastname">
-            <input type="text" name="email" class="email" placeholder="E-mail" v-model="email">
-            <input type="text" name="usertype" class="usertype" placeholder="Tipo de usuario" v-model="usertype">
-        </form>
+        <h2 class="subtitle">Reservaciones</h2>
+        <div class="add-search">
+            <button id="agg" href="#">Administrar solicitudes</button>
+        </div>
         
-        <a @click="this.addNewUser(this.name,this.lastname,this.email.this.usertype)" id="agg" href="#">Agregar docente</a>
-        <p id="buscar">Buscar:</p>
-        <form action="">
-            <input type="text" name="write" id="write" placeholder="Por nombre, correo o tipo de usuario" v-model="username">
-        </form>
+        <div>
+            <div class="search-bar">
+                <h2>Solicitudes pendientes</h2>
+                <p>Buscar:</p>
+                <input type="text" v-model="input" placeholder="Nombre de docente o laboratorio">
+            </div>
+            <Table :reservations = reservations :reservationStatus = 2 :tableHeaderType = 2 :tableBodyType = 1 :tableButtonType = 0 />
 
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <th>Correo</th>
-                <th>Tipo de usuario</th>
-                <th>Opciones</th>
-            </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-                <!--<td><a @click="this.modify" class="modificar" href="#">Modificar</a> <a @click="this.eliminates" class="eliminar" href="#">Eliminar</a></td> -->
-            </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-            </tr>
-            <tr>
-                <td>Hector Fernando Gomez Garcia</td>
-                <td>fgom@ucaribe.edu.mx</td>
-                <td>Docente</td>
-                <td><button @click="this.modify" class="modificar">Modificar</button> <button @click="this.eliminates" class="eliminar">Eliminar</button></td>
-            </tr>
-        </table>
+        </div>
+
+
+
     </div>
     
 </template>
