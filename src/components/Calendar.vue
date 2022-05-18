@@ -5,9 +5,11 @@
     import timeGridPlugin from '@fullcalendar/timegrid'
     import interactionPlugin from '@fullcalendar/interaction'
     import esLocale from '@fullcalendar/core/locales/es'
+    
+    //recibir getEvents como props y luego usar then para cambiar los eventos
 
     export default{
-        props: ['events'],
+        props: ['events','getEventsAsync','labId'],
         emits: ['updateEvents'],
         created(){
             this.$emit('updateEvents',this.updateEvents)
@@ -21,31 +23,21 @@
                 let idCon = 1
                 let ev
 
-                console.log(events)
-
                 while(ev = calendarApi.getEventById(idCon++)){
                     ev.remove()
                 }
 
-                for(let i = 0; i < events; i++){
+                for(let i = 0; i < events.length; i++){
+                    console.log(events[i])
                     calendarApi.addEvent(events[i])
                 }
-            }
+            },
         },
         watch: {
-            events(){
-                let calendarApi = this.$refs.fullCalendar.getApi()
-                let idCon = 1
-                let ev
-
-                while(ev = calendarApi.getEventById(idCon++)){
-                    ev.remove()
-                }
-                calendarApi.addEvent(this.events[0])
-                console.log(this.events)
-                for(let i = 0; i < this.events; i++){
-                    calendarApi.addEvent(this.events[i])
-                }  
+            labId(){
+                this.getEventsAsync(this.labId).then(res => {
+                    this.updateEvents(res)
+                })
             }
         },
         data() {
@@ -75,7 +67,7 @@
 </script>
 
 <template>
-    <div class="calendarContainer" @click="this.updateEvents()">
+    <div class="calendarContainer">
         <FullCalendar ref="fullCalendar" :options="calendarOptions" />
     </div>
 </template>
