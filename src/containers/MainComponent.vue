@@ -96,7 +96,6 @@
                     userId: userId
                 })
                 .then(reservations => {
-                    console.log(reservations)
                     this.reservations = reservations
                 })
                 .catch(err => alert('Algo salio mal'))

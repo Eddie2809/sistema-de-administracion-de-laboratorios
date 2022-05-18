@@ -47,6 +47,34 @@
             },
             setModalVersion(newModalVersion){
                 this.modalVersion = newModalVersion;
+            },
+            filterHours(horas){
+                let min = new Date(10000000000000)
+
+                for(let i = 0; i < horas.length; i++){
+                    if(new Date(horas[i].start) < min){
+                        min = new Date(horas[i].start)
+                    }
+                }
+                let firstDayOfWeek = this.getFirstDayOfWeek(min)
+                let upperbound = this.createDayObj(firstDayOfWeek,7)
+
+                let filteredHours = []
+                for(let i = 0; i < horas.length; i++){
+                    if(new Date(horas[i].start) >= firstDayOfWeek && new Date(horas[i].end) <= upperbound){
+                        filteredHours.push(horas[i])
+                    }
+                }
+                return filteredHours
+            },
+            getFirstDayOfWeek(today){
+                let weekday = today.getDay()
+                if(weekday === 0) weekday = 6
+                else weekday = weekday - 1
+                return new Date(today.getTime() - (1000 * 60 * 60 * 24 * weekday))
+            },
+            createDayObj(dayObj,ndays){
+                return new Date(dayObj.getTime() + (1000 * 60 * 60 * 24 * ndays))
             }
         },
         components: {
@@ -91,12 +119,12 @@
                 </tr>
             </thead>
 
-            <tbody v-if="tableBodyType == 0" v-for="hours in reservation.horas">
+            <tbody v-if="tableBodyType == 0" v-for="hours in this.filterHours(reservation.horas)">
                 <td>Dia: {{moment(hours.start).format('dddd')}}</td>
                 <td>Hora de inicio: {{moment(hours.start).format('LT')}}</td>
                 <td>Hora de fin: {{moment(hours.end).format('LT')}}</td>
             </tbody>
-            <tbody v-if="tableBodyType == 1" v-for="hours in reservation.horas">
+            <tbody v-if="tableBodyType == 1" v-for="hours in this.filterHours(reservation.horas)">
                 <td>
                     <p>Dia: {{moment(hours.start).format('dddd')}}</p>
                     <p>Hora de inicio: {{moment(hours.start).format('LT')}}</p>

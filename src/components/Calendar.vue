@@ -28,7 +28,8 @@
                 }
 
                 for(let i = 0; i < events.length; i++){
-                    console.log(events[i])
+                    events[i].start = new Date(new Date(events[i].start).getTime() - (1000 * 60 * 60 * 5))
+                    events[i].end = new Date(new Date(events[i].end).getTime() - (1000 * 60 * 60 * 5))
                     calendarApi.addEvent(events[i])
                 }
             },

@@ -182,6 +182,7 @@ footer a u {
 }
 
 .table_container .table_Reservaciones > thead {
+  padding: 20px 40px 20px 40px;
   width: 1226px;
   height: 120px;
   margin-left: 1vw;
