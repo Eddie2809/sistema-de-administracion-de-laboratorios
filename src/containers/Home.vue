@@ -2,7 +2,7 @@
     import Calendar from '../components/Calendar.vue'
 
     export default ({
-        props: ['getLabs','events','getEvents','labsList'],
+        props: ['getLabs','events','getEvents','labsList','getEventsAsync'],
         mounted(){
             this.getLabs()
         },
@@ -14,11 +14,6 @@
                 labId: -1
             })
         },
-        watch: {
-            labId(){
-                this.getEvents(this.labId)
-            }
-        }
     })
 /* 
     Asignado a: Eddie    
@@ -40,6 +35,6 @@
             </select>
         </div>
         <hr>
-        <Calendar :events="this.events"/>
+        <Calendar :getEventsAsync="this.getEventsAsync" :labId="this.labId" :events="this.events"/>
     </div>
 </template>

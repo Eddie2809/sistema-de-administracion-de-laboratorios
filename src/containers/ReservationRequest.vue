@@ -43,7 +43,7 @@
     ]
 
     export default{
-    props: ["getLabs", "labsList","getEvents","events","createNewReservation"],
+    props: ["getLabs", "labsList","getEvents","events","createNewReservation",'getEventsAsync'],
     mounted() {
         this.getLabs()
     },
@@ -227,6 +227,6 @@
         </div>
         <button @click="this.sendRequest" class="sendButton">Enviar</button>
         <p class="subtitle">Vista previa</p>
-        <Calendar :events="this.events"/>
+        <Calendar :getEventsAsync="this.getEventsAsync" :events="this.events"/>
     </div>
 </template>
