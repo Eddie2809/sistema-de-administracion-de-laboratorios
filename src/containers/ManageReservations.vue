@@ -34,10 +34,10 @@
         Asignado a: Bryan
 
         Notas: 
-        -Abrir ventana de confirmación para cancelar reservación (1/2)
-        -Abrir ventana para escribir motivo de rechazo al rechazar una reservación (1/2)
+        -Abrir ventana de confirmación para cancelar reservación (1)
+        -Abrir ventana para escribir motivo de rechazo al rechazar una reservación (1)
         -La vista previa es para que el encargado vea como quedaría el horario si aceptara esa reservación  (X)
-        -En 'Estado' puedes permitir o rechazar las solicitudes de reservación (1/2)
+        -En 'Estado' puedes permitir o rechazar las solicitudes de reservación (1)
         -Reservaciones activas son aquellas con estado 1
         -Reservaciones inactivas son aquellas con estado 0
         -Esta pendiente la función para obtener las reservaciones :(
@@ -53,7 +53,9 @@
     export default{
         data(){
             return{
-                id_lab: ''
+                id_lab: '',
+                status: true,
+                input: ''
             }
         },
         computed: {
@@ -64,9 +66,14 @@
                         return i.id_encargado;
                     }
                 });
+            },
+            filteredItems() {
+                return this.reservations.filter((i) =>{
+                    return i.nombre_laboratorio.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.nombreSolicitante.toLowerCase().indexOf(this.input.toLowerCase()) != -1 || i.apellidoSolicitante.toLowerCase().indexOf(this.input.toLowerCase()) != -1;
+                });
             }
         },
-        props: ['getReservations', 'userData', 'labsList', 'reservations', 'getLabs'],
+        props: ['getReservations', 'userData', 'labsList', 'reservations', 'getLabs', 'evaluateReservation', 'cancelReservation', 'changeLabStatus'],
         mounted() {
             this.getReservations(this.id_lab, -1)
             this.getLabs()
@@ -90,29 +97,29 @@
                 <h3 v-for="item in getLab" :key="item.id_laboratorio">Laboratorio asignado: {{item.nombre_laboratorio}}</h3>
                 <div class="Lab_Status">
                 <p>Estado: </p>
-                    <select>
-                        <option>Se permiten solicitudes</option>
-                        <option>No se permiten solicitudes</option>
+                    <select v-model="status">
+                        <option value=true>Se permiten solicitudes</option>
+                        <option value=false>No se permiten solicitudes</option>
                     </select>
-                    <button>Actualizar</button>
+                    <button @click="changeLabStatus(this.id_lab, status);">Actualizar</button>
                 </div>
             </div>
 
             <div class="search-style">
                 <h2>Solicitudes Pendientes</h2>
                 <p>Buscar:</p>
-                <input v-model="search" type="text" placeholder="Nombre de docente">
+                <input v-model="input" type="text" placeholder="Nombre de docente">
             </div>
 
-            <Table :reservations = reservations :reservationStatus = 2 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 0 />
+            <Table :reservations = reservations :reservationStatus = 2 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 0 :evaluateReservation="evaluateReservation" />
 
             <div class="search-style">
                 <h2>Reservaciones activas</h2>
                 <p>Buscar:</p>
-                <input v-model="search" type="text" placeholder="Nombre de docente">
+                <input v-model="input" type="text" placeholder="Nombre de docente">
             </div>
             
-            <Table :reservations = reservations :reservationStatus = 1 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 1 />
+            <Table :reservations = reservations :reservationStatus = 1 :tableHeaderType = 0 :tableBodyType = 0 :tableButtonType = 1 :cancelReservation="cancelReservation" />
 
         </div>
     </div>

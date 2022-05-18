@@ -283,8 +283,8 @@
         <AdminTools v-if="this.route === 'admintools'" :getLabs="getLabs" :lablist="this.labsList" :getUsers="getUsers" :userlist="this.usersList" :assignLabManager="assignLabManager" :deleteLab="deleteLab" :modifyLab="modifyLab" :addNewLab="addNewLab" :addNewUser="addNewUser" :modifyUser="modifyUser" :deleteUser="deleteUser" :changeLabStatus="changeLabStatus" :getEvents="getEvents" :getReservations="getReservations" :reservations="this.reservations" :userData="this.userData"/>
         <Home v-if="this.route === 'home'" :getLabs="getLabs" :getEvents="getEvents" :labsList="this.labsList" :events="events"/>
         <LabsList v-if="this.route === 'labslist'" :getLabs="getLabs" :list="this.labsList"/>
-        <ManageReservations v-if="this.route === 'managereservations'" :getLabs="getLabs" :userData="this.userData" :reservations="this.reservations" :labsList="this.labsList" :getReservations="getReservations"/>
-        <MyReservations v-if="this.route === 'myreservations'" :userData="this.userData" :reservations="this.reservations" :getReservations="getReservations"/>
+        <ManageReservations v-if="this.route === 'managereservations'" :getLabs="getLabs" :userData="this.userData" :reservations="this.reservations" :labsList="this.labsList" :getReservations="getReservations" :evaluateReservation="evaluateReservation" :cancelReservation="cancelReservation" :changeLabStatus="changeLabStatus" />
+        <MyReservations v-if="this.route === 'myreservations'" :userData="this.userData" :reservations="this.reservations" :getReservations="getReservations" :cancelReservation="cancelReservation" />
         <ReservationRequest v-if="this.route === 'reservationrequest'" :createNewReservation="this.createNewReservation" :events="events" :getEvents="this.getEvents" :getLabs="getLabs" :labsList="this.labsList"/>
         <Footer v-if="this.route !== 'login'"/>
     </div>

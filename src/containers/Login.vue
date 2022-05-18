@@ -33,7 +33,7 @@
         <input type="password" name="write2" id="write2" v-model="password">
     </form>
 
-    <a @click="this.evaluateCredentials(this.username,this.password)" id="enviar" href="#">Enviar</a>
+    <button @click="this.evaluateCredentials(this.username,this.password)" id="enviar" autofocus>Enviar</button>
 
     <div class="rectangle"></div>
     <a id="regresar" href="#" @click="this.changeRoute('home')" >Regresar a página principal</a>
